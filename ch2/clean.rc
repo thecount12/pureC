@@ -1,0 +1,7 @@
+#!/bin/rc
+# clean up files
+echo "starting cleanup"
+rm *9.c*
+rm *.6
+rm foo
+echo "cleanup complete"

@@ -1,0 +1,3 @@
+#!/bin/rc
+# troff
+troff -ms macro.ms 2.ms | page -w
