@@ -1,0 +1,3 @@
+gcc -o foo bar.c
+
+gcc -Wall -Wextra -o foo bar.c
