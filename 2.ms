@@ -55,3 +55,42 @@ int x = 1,y = 2;
 .LP
 You just have to remember they must be declared before you
 use them and the "type"  can't change. 
+.NH
+Variable Types
+.LP
+The "C" language is a bit picky about types and how you work with them. 
+.PS
+box "This is a figure"
+.PE
+.LP
+.BI "Figure 1."
+.I "The following table highlights core built-in variable types"
+.PP
+The following table highlights essential text processing utilities available
+on the system:
+.TS
+box, center, tab(|);
+cb | cb | cb
+r | l | l.
+Type|Description|Format
+_
+Character|char  'c'|%c
+Integer|int     3490|%d
+Floating point|float  3.14159|%f
+string|char*  "Hello, world!"| %c
+.TE
+.LP
+C is not great at strings as you can see. Its really just a character array or a
+pointer to a bunch of characters. We also have a few modifiers
+.TS
+box, center, tab(|);
+cb|cb|cb
+r|l|l.
+Modifier|Example|Meaning
+_
+short|short int x;|small integer(often 2 bytes)
+long| long int y;|large integer (often 8 bytes)
+unsigned|unsigned int z;|only non-negative values
+.TE
+.LP
+asdf
