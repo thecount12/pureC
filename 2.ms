@@ -208,4 +208,40 @@ _
 .TE
 .LP
 Finally we have OR ( a| b ) these are usefful for embeded or optimized tasks. 
-
+.NH
+The sizeof Operator
+.LP
+This operator get size in bytes that a variable or data type stores in memory. It
+can be different on different systems. Super useful in embedded systems and I use it
+it very often. 
+.PP
+.ft I
+size.c
+.ft R
+.P1
+#include "common.h"
+int
+main()
+{
+	int a = 9999;
+	printf("%ld\en", (long)sizeof(a));
+	printf("%ld\en", sizeof(7*4));
+	printf("%ld\en", sizeof(3.14));
+	printf("%ld\en", sizeof(int));
+	printf("%ld\en", sizeof(char));
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+4
+4
+8
+4
+1
+.P2
+.PP
+asdf
