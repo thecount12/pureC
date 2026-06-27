@@ -93,4 +93,119 @@ long| long int y;|large integer (often 8 bytes)
 unsigned|unsigned int z;|only non-negative values
 .TE
 .LP
-asdf
+C is often very specific and requires a strategy to utilize meaningful names for
+program readability and reusability.
+.PP
+.ft I
+enum.c
+.ft R
+.P1
+#include "common.h"
+#define myPI 3.14159
+enum WeekDays {
+	monday,
+	tuesday,
+	wednesday,
+	thursday,
+	friday
+};
+int
+main()
+{
+	int mon;
+	int tue = 1;
+	printf("PI: %.2f\n", myPI);
+	printf("enum starts: %d\en", monday);
+	mon +=1;
+    printf("monday: %d\en", mon);
+	tue++;
+	printf("tuesday: %d\en", tue);
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+cpu% enum
+PI: 3.14
+enum starts: 0
+monday: 1
+tuesday: 2
+.P2
+.LP
+I had to pick myPi instead of PI. Some systems recognize PI as 3.14159 and a redefinition
+erorr would appear at compile time. But generally this is how you define a preprocessor
+constant. The keyword "const   <type> <name>" is another way but I never really use those.
+The "enum" keyword generally starts at zero (0). You could set "monday = 1," and 
+enumeration would continue from that number. Also preprocessors don't take up memory
+because its replaced during compile time. 
+.NH
+Arithmetic
+.LP
+I try to stick to basic math. But if you need to dig deeper you do have math.h which 
+has features like exponentation with pow() function and other suck functions for
+the full range of math. But you can be creative enough and a bunch of complex math
+with functions. Here are the basics. 
+.PP
+.ft I
+calc.c
+.ft R
+.P1
+#include "common.h"
+int
+main()
+{
+    int a = 10, b = 2;
+    printf("a+b = %d\en", a + b); 
+    printf("a-b = %d\en", a - b);
+    printf("a*b = %d\en", a * b);
+    printf("a/b = %d\en", a / b);
+    printf("a%%b = %d\en", a % b);
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+a+b = 13
+a-b = 7
+a*b = 30
+a/b = 3
+a%b = 1
+.P2
+.PP
+Relational and logical Operators
+.TS
+box, center, tab(|);
+cb|cb|cb
+r|l|l.
+Type|Example|Meaning
+_
+Relational|a == b| Equal
+ |a != b | Not equal
+ |a < b |comparion
+logical | a && b | Logical and
+  | !a | Logical NOT
+.TE
+.LP
+We also have Logical OR ( a || b). These symbols are the same for bitwise operations only
+singular in usage.
+.TS
+box, center, tab(|);
+cb|cb|cb
+r|l|l.
+Operator|Meaning|Example
+_
+&|AND| a & b
+^ |XOR | a ^ b
+~ |NOT |~a
+<< | Left shift | a <<1
+ >> | Right shift | a >>2
+.TE
+.LP
+Finally we have OR ( a| b ) these are usefful for embeded or optimized tasks. 
+
