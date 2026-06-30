@@ -1,0 +1,44 @@
+// plan9 does not use printf so replace with print
+
+var a = args();
+if (a.length < 1) {
+  print "usage: lux 9fix.lux file_name";
+  print "       omit file extension .c";
+  exit();
+}
+var input_name = a[0] + ".c"; // posix 
+var output_name = a[0] + "9.c"; // plan9
+print "input:" + input_name;
+print "output:" + output_name;
+
+if (!fileExists(input_name)) {
+	print "Missing File: " + input_name;
+	exit();
+} 
+
+var dat = readFile(input_name);
+var lines = strSplit(dat, "\n");
+print "<--original code-->";
+print dat;
+print "-----";
+
+var needle = "printf(";
+var rep1 = "print(";
+var new_string = "";
+
+for (var i = 0; i<lines.length; i = i + 1 ) {
+	var idx = strFind(lines[i], needle);
+	if (idx == -1) {
+		print lines[i];
+		new_string = new_string + lines[i] + "\n";
+	} else {
+	var found = strFind(lines[i], needle);
+	var before = strSlice(lines[i], 0, found);
+	var after = strSlice(lines[i], found + len(needle), len(lines[i]) );
+	var build = before + rep1 + after;
+	new_string = new_string + build + "\n";
+	print build;
+	}
+}
+print "Write new file";
+writeFile(output_name, new_string);

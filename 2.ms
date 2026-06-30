@@ -55,7 +55,7 @@ int x = 1,y = 2;
 .LP
 You just have to remember they must be declared before you
 use them and the "type"  can't change. 
-.NH
+.NH 2
 Variable Types
 .LP
 The "C" language is a bit picky about types and how you work with them. 
@@ -141,7 +141,7 @@ constant. The keyword "const   <type> <name>" is another way but I never really 
 The "enum" keyword generally starts at zero (0). You could set "monday = 1," and 
 enumeration would continue from that number. Also preprocessors don't take up memory
 because its replaced during compile time. 
-.NH
+.NH 2
 Arithmetic
 .LP
 I try to stick to basic math. But if you need to dig deeper you do have math.h which 
@@ -208,7 +208,7 @@ _
 .TE
 .LP
 Finally we have OR ( a| b ) these are usefful for embeded or optimized tasks. 
-.NH
+.NH 2
 The sizeof Operator
 .LP
 This operator get size in bytes that a variable or data type stores in memory. It
@@ -244,4 +244,7 @@ Output:
 1
 .P2
 .PP
-asdf
+This works fine on posixsystems but i think the preferredis "%zu". Also newer C has
+special type to represent the return type as "size_t". But I don't use that either, 
+but its perferred. Also these sizes can be different depending on the computer
+archictecture.
