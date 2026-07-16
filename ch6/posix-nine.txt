@@ -1,0 +1,39 @@
+#include "commoh.h" // posix 
+int 
+main() 
+{
+	char *filename
+	FILE *fp;
+	char buffer[256];
+	fp = fopen(filename, "r");
+    if (fp == NULL) {
+        printf("error opening file");
+        return;
+    }
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        printf("%s", buffer);
+    }
+    fclose(fp);
+	return 0;
+}
+
+/---------------plan9
+
+#include "common.h"
+int
+main()
+{
+	char *filename
+    Biobuf *bp;
+    char *line;
+    bp = Bopen(filename, OREAD);
+    if(bp == nil) {
+        print("failed to open file");
+    }
+    while((line = Brdstr(bp, '\n', 0)) != nil) {
+        print("%s", line);
+        free(line);
+    }
+    Bterm(bp);
+	return 0;
+}

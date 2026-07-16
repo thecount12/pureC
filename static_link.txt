@@ -1,0 +1,4 @@
+example of static link
+gcc main.c mathutil.c -o static_app
+./static_app
+p60

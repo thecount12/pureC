@@ -77,11 +77,11 @@ main()
 {
 	int i = 40;
 	while(i < 42) {
-		printf("While: i is %d\n", i);
+		printf("While: i is %d\en", i);
 		i++;
 	}
 	do {
-		printf("do-while: i is %d\n", i);
+		printf("do-while: i is %d\en", i);
 	} while(i <40);
 	return 0;
 }
@@ -116,7 +116,7 @@ int
 main()
 {
 	for (int i=1; i<5;i++) {
-		printf("i is: %d\n", i);
+		printf("i is: %d\en", i);
 	}
 	return 0;
 }
@@ -137,4 +137,52 @@ i is: 4
 \l'\n(.lu'
 .br
 .PP
-asdf
+You do have additional features that you can use in loops and conditional statements such
+as "break" and "continue". This will allow you to skip or stop partway through a loop.
+We will see an example of break in the "switch" statement. 
+.NH 2
+The 'Swith' Statement
+.PP
+I rarely used "switch" statement in any other language. Its mostly been "C" or maybe
+"go". I think I have it in lux. It is more elegant than nested if-else statements.
+.ft I
+switch.c
+.ft R 
+.P1
+#include "common.h"
+int
+main()
+{
+	int num = 3;
+	switch(num) {
+		case 1:
+			printf("one\en");
+			break;
+		case 2:
+			printf("two\en");
+			break;
+		case 3:
+			printf("three\en");
+		case '4':
+			printf("missing break: four\en");
+			break;
+		default:
+			print("default\en");
+	}
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.PP
+three
+.PP
+missing break: four
+.br
+\l'\n(.lu'
+.br
+.PP
+This is an example of catching (3) an falling through to (4) because of a missing "break"
+statement.
