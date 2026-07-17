@@ -1,25 +1,23 @@
 #include "common.h"
-#include <bio.h>
 void 
 usage(void)
 {
-	print("read_file: file_name\n");
+	printf("read_file: file_name\n");
 }
 int
 main(int argc, char *argv[])
 {
-	print("id: %d, item: %s\n", argc, argv[0]);
+	printf("id: %d, item: %s\n", argc, argv[0]);
 	if (argc <= 1) {
 		usage();
 		exit(1);
 	}
-	char *filename
 	FILE *fp;
 	char buffer[256];
-	fp = fopen(filename, "r");
+	fp = fopen(argv[1], "r");
     if (fp == NULL) {
         printf("error opening file");
-        return;
+        return 0;
     }
     while (fgets(buffer, sizeof(buffer), fp) != NULL) {
         printf("%s", buffer);

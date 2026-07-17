@@ -1,0 +1,2 @@
+Hello from the Plan 9 world!
+Writing files line by line using Bprint.

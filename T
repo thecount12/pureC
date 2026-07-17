@@ -1,4 +1,4 @@
 #!/bin/rc
 # troff
 #troff -ms macro.ms 2.ms | page -w
-tbl macro.ms 6.ms | troff -ms | page -w
+tbl macro.ms 7.ms | troff -ms | page -w
