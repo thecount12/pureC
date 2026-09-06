@@ -14,12 +14,12 @@ struct Car {
 void
 print_car(Car *p)
 {
-	print("Car: %d %s %s\n", p->year, p->make, p->model);
-	print("Base Price: $%.2f\n", p->price.base);
-	print("Total Cost: $%.2f\n", p->price.total);
+	printf("Car: %d %s %s\n", p->year, p->make, p->model);
+	printf("Base Price: $%.2f\n", p->price.base);
+	printf("Total Cost: $%.2f\n", p->price.total);
 }
 int
-main()
+main(void)
 {
 	Car c1 = {"Toyota", "Corolla", 2024, 
 		{22000.00, 23800.50}

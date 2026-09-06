@@ -1,2 +1,2 @@
-Hello from the Plan 9 world!
-Writing files line by line using Bprint.
+Hello from the POSIX world!
+Writing files line by line using fprintf.

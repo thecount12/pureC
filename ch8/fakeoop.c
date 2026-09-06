@@ -11,12 +11,12 @@ struct Student {
 void 
 print_person(struct Person *p)
 {
-	print("Name: %s, Age: %d\n", p->name, p->age);
+	printf("Name: %s, Age: %d\n", p->name, p->age);
 }
 void 
 print_student(struct Student *s)
 {
-	print("Student: %s | Major: %s | GPA: %.2f\n", s->base.name, s->major, s->gpa);
+	printf("Student: %s | Major: %s | GPA: %.2f\n", s->base.name, s->major, s->gpa);
 }
 int
 main(void)

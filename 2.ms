@@ -1,28 +1,31 @@
 .NH
 Chapter 2. Variables and Statements
 .LP
-In "C", everything begins with a type. This "type" tells the compiler how much memory to reserveand how bits are stored
-including which operations are allowed. It's closes way to speak to comptuers native language precicely.
+In C, everything begins with a type. The type tells the compiler how
+much memory to reserve, how the bits are stored, and which operations
+are allowed. It is the closest we get to talking to the machine
+without writing assembly.
 .PP
 .ft I
 2_data_types.c
 .ft R
 .P1
 #include "common.h"
+
 int
-main()
+main(void)
 {
-	int age = 42; // integer
-	float price = 3.14159; // floating-point number
-	char initial = 'a'; //single character
-	double weight = 155.2; // double precision
-	unsigned int score = 100; // only non negative
- 	long long_num = 2114748364; // long 32-bit
- 	long long big_num = 12345678901234; // long number 64-bit
+	int age = 42;
+	float price = 3.14159;
+	char initial = 'a';
+	double weight = 155.2;
+	unsigned int score = 100;
+	long long_num = 2114748364;
+	long long big_num = 12345678901234LL;
 
 	printf("age: %d, price: %f\en", age, price);
 	printf("initial: %c, weight: %f\en", initial, weight);
-	printf("score: %d\en", score);
+	printf("score: %u\en", score);
 	printf("long_num: %ld\en", long_num);
 	printf("big_num: %lld\en", big_num);
 	return 0;
@@ -40,61 +43,69 @@ long_num: 2114748364
 big_num: 12345678901234
 .P2
 .LP
-Each variable is initialized, but you can declare without assignment like this: 
+Each variable is initialized. You can declare without an assignment:
 .PP
 .ft CW
 int count;
 .ft R
 .LP
-You can do multiple declarations on one line separated
-by a comma: 
+but then
+.CW count
+holds garbage until you store something. I used to increment
+uninitialized variables and call the output "interesting." It is a bug.
+Initialize it.
+.LP
+Multiple names of the same type can share a line:
 .PP
 .ft CW
-int x = 1,y = 2;
+int x = 1, y = 2;
 .ft R
 .LP
-You just have to remember they must be declared before you
-use them and the "type"  can't change. 
+They must be declared before you use them, and the type cannot change.
 .NH 2
-Variable Types
+Variable types
 .LP
-The "C" language is a bit picky about types and how you work with them. 
-.PS
-box "This is a figure"
-.PE
-.LP
-.BI "Figure 1."
-.I "The following table highlights core built-in variable types"
-.PP
-The following table highlights essential text processing utilities available
-on the system:
+C is picky about types. This is the small set we actually need:
 .TS
 box, center, tab(|);
 cb | cb | cb
-r | l | l.
-Type|Description|Format
+l | l | l.
+Type|Example|printf
 _
-Character|char  'c'|%c
-Integer|int     3490|%d
-Floating point|float  3.14159|%f
-string|char*  "Hello, world!"| %c
+char|char c = 'c';|%c
+int|int n = 3490;|%d
+unsigned int|unsigned int u = 100;|%u
+float|float x = 3.14159;|%f
+double|double y = 155.2;|%f
+char array|char s[] = "hello";|%s
 .TE
 .LP
-C is not great at strings as you can see. Its really just a character array or a
-pointer to a bunch of characters. We also have a few modifiers
+C has no real string type. A string is a character array with a
+.CW '\\0'
+at the end, or a pointer to those characters. We will spend a later
+chapter on that. For now, a
+.CW char
+array is enough to hold a name.
+.LP
+Modifiers change size or sign:
 .TS
 box, center, tab(|);
 cb|cb|cb
-r|l|l.
+l|l|l.
 Modifier|Example|Meaning
 _
-short|short int x;|small integer(often 2 bytes)
-long| long int y;|large integer (often 8 bytes)
-unsigned|unsigned int z;|only non-negative values
+short|short int x;|smaller integer (often 2 bytes)
+long|long int y;|larger integer (often 4 or 8 bytes)
+unsigned|unsigned int z;|never negative
 .TE
+.NH 2
+Names, enums, and preprocessor constants
 .LP
-C is often very specific and requires a strategy to utilize meaningful names for
-program readability and reusability.
+Give things names a human can read. An
+.CW enum
+is a list of integer names. A
+.CW #define
+is a name the preprocessor pastes in before the compiler sees the file.
 .PP
 .ft I
 enum.c
@@ -110,16 +121,17 @@ enum WeekDays {
 	friday
 };
 int
-main()
+main(void)
 {
-	int mon;
-	int tue = 1;
-	printf("PI: %.2f\n", myPI);
+	int mon = monday;
+	int tue = tuesday;
+
+	printf("PI: %.2f\en", myPI);
 	printf("enum starts: %d\en", monday);
-	mon +=1;
-    printf("monday: %d\en", mon);
+	mon += 1;
+	printf("monday+1: %d\en", mon);
 	tue++;
-	printf("tuesday: %d\en", tue);
+	printf("tuesday+1: %d\en", tue);
 	return 0;
 }
 .P2
@@ -128,41 +140,50 @@ main()
 Output:
 .ft R
 .P1
-cpu% enum
 PI: 3.14
 enum starts: 0
-monday: 1
-tuesday: 2
+monday+1: 1
+tuesday+1: 2
 .P2
 .LP
-I had to pick myPi instead of PI. Some systems recognize PI as 3.14159 and a redefinition
-erorr would appear at compile time. But generally this is how you define a preprocessor
-constant. The keyword "const   <type> <name>" is another way but I never really use those.
-The "enum" keyword generally starts at zero (0). You could set "monday = 1," and 
-enumeration would continue from that number. Also preprocessors don't take up memory
-because its replaced during compile time. 
+I used
+.CW myPI
+instead of
+.CW PI .
+Some environments already define
+.CW PI
+and you get a redefinition error.
+.CW enum
+starts at zero unless you set the first value.
+.CW #define
+names are not variables. They disappear at compile time, so they do
+not take memory.
+.CW const int
+is the other way. I rarely use it. You can.
 .NH 2
 Arithmetic
 .LP
-I try to stick to basic math. But if you need to dig deeper you do have math.h which 
-has features like exponentation with pow() function and other suck functions for
-the full range of math. But you can be creative enough and a bunch of complex math
-with functions. Here are the basics. 
+I stick to basic math.
+.CW <math.h>
+exists if you need
+.CW pow
+and friends. Here are the operators we will actually type:
 .PP
 .ft I
-calc.c
+arithmetic.c
 .ft R
 .P1
 #include "common.h"
 int
-main()
+main(void)
 {
-    int a = 10, b = 2;
-    printf("a+b = %d\en", a + b); 
-    printf("a-b = %d\en", a - b);
-    printf("a*b = %d\en", a * b);
-    printf("a/b = %d\en", a / b);
-    printf("a%%b = %d\en", a % b);
+	int a = 10, b = 2;
+
+	printf("a+b = %d\en", a + b);
+	printf("a-b = %d\en", a - b);
+	printf("a*b = %d\en", a * b);
+	printf("a/b = %d\en", a / b);
+	printf("a%%b = %d\en", a % b);
 	return 0;
 }
 .P2
@@ -171,49 +192,63 @@ main()
 Output:
 .ft R
 .P1
-a+b = 13
-a-b = 7
-a*b = 30
-a/b = 3
-a%b = 1
+a+b = 12
+a-b = 8
+a*b = 20
+a/b = 5
+a%b = 0
 .P2
-.PP
-Relational and logical Operators
+.LP
+Integer division truncates.
+.CW 10 / 2
+is 5.
+.CW 5 / 2
+is 2, not 2.5. Use
+.CW float
+or
+.CW double
+if you want a fraction.
+.LP
+Relational and logical operators:
 .TS
 box, center, tab(|);
 cb|cb|cb
-r|l|l.
-Type|Example|Meaning
+l|l|l.
+Kind|Example|Meaning
 _
-Relational|a == b| Equal
- |a != b | Not equal
- |a < b |comparion
-logical | a && b | Logical and
-  | !a | Logical NOT
+Relational|a == b|equal
+ |a != b|not equal
+ |a < b|less than
+Logical|a && b|and
+ |a || b|or
+ |!a|not
 .TE
 .LP
-We also have Logical OR ( a || b). These symbols are the same for bitwise operations only
-singular in usage.
+Bitwise operators look similar but take one
+.CW &
+or
+.CW |
+instead of two. They are useful on embedded work. We will not live
+in them:
 .TS
 box, center, tab(|);
 cb|cb|cb
-r|l|l.
+l|l|l.
 Operator|Meaning|Example
 _
-&|AND| a & b
-^ |XOR | a ^ b
-~ |NOT |~a
-<< | Left shift | a <<1
- >> | Right shift | a >>2
+&|AND|a & b
+\||OR|a | b
+^|XOR|a ^ b
+~|NOT|~a
+<<|left shift|a << 1
+>>|right shift|a >> 2
 .TE
-.LP
-Finally we have OR ( a| b ) these are usefful for embeded or optimized tasks. 
 .NH 2
-The sizeof Operator
+The sizeof operator
 .LP
-This operator get size in bytes that a variable or data type stores in memory. It
-can be different on different systems. Super useful in embedded systems and I use it
-it very often. 
+.CW sizeof
+gives the size in bytes of a type or a value. It can change with the
+machine. I use it constantly.
 .PP
 .ft I
 size.c
@@ -221,14 +256,15 @@ size.c
 .P1
 #include "common.h"
 int
-main()
+main(void)
 {
 	int a = 9999;
+
 	printf("%ld\en", (long)sizeof(a));
-	printf("%ld\en", sizeof(7*4));
-	printf("%ld\en", sizeof(3.14));
-	printf("%ld\en", sizeof(int));
-	printf("%ld\en", sizeof(char));
+	printf("%ld\en", (long)sizeof(7 * 4));
+	printf("%ld\en", (long)sizeof(3.14));
+	printf("%ld\en", (long)sizeof(int));
+	printf("%ld\en", (long)sizeof(char));
 	return 0;
 }
 .P2
@@ -243,8 +279,55 @@ Output:
 4
 1
 .P2
+.LP
+The honest conversion specifier for
+.CW sizeof
+is
+.CW %zu
+because the result is
+.CW size_t .
+I cast to
+.CW long
+and print
+.CW %ld
+so I am not fighting format warnings yet. These sizes are for my
+machine. Yours might differ. That is the lesson.
+.NH 2
+People so far
+.LP
+Bob is no longer a magic number inside
+.CW printf .
+He has a name, an age, and a height, each with a type.
 .PP
-This works fine on posixsystems but i think the preferredis "%zu". Also newer C has
-special type to represent the return type as "size_t". But I don't use that either, 
-but its perferred. Also these sizes can be different depending on the computer
-archictecture.
+.ft I
+people/ch2.c
+.ft R
+.P1
+#include "common.h"
+
+int
+main(void)
+{
+	char name[] = "Bob";
+	int age = 42;
+	float height = 5.8f;
+
+	printf("name: %s\en", name);
+	printf("age: %d\en", age);
+	printf("height: %.1f\en", height);
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+name: Bob
+age: 42
+height: 5.8
+.P2
+.LP
+.CW name
+is a character array. Next chapter we get a few people and a loop,
+and we skip anyone under 21.

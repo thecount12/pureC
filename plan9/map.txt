@@ -1,0 +1,14 @@
+Printed POSIX name     Plan 9 after you swap common.h
+-------------------    --------------------------------
+printf(...)            print(...)
+NULL                   nil
+exit(n)                exits(nil) or exits("error")
+FILE *                 Biobuf *
+fopen(path, "r")       Bopen(path, OREAD)
+fopen(path, "w")       Bopen(path, OWRITE)
+fgets / fprintf        Brdstr / Bprint
+fclose(fp)             Bterm(bp)
+
+The language in the listings is meant to compile on 8c once those
+names change: declare variables at the start of a block, no
+for (int i = 0).

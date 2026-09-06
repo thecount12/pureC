@@ -1,201 +1,68 @@
 .NH
-Structs
+Chapter 8. Memory
 .LP
-I believe this makes up the core of C. A struct is a user defined type that holds mixed data types.
-The most traditional example is circle. But we will go with a person.
-.PP
-.ft I
-person.c
-.ft R
-.P1
-#include "common.h"
-struct Person {
-	char *name;
-	int age;
-	float height;
-};
-int main() {
-	struct Person p1 = {"Bob", 42, 5.8};
-	printf("Name: %s\en", p1.name);
-	printf("Age: %d\en", p1.age);
-	printf("Height: %.2f\en", p1.height);
-	struct Person *ptr = &p1;
-	printf("Pointer example: %s, age %d\en", ptr->name, ptr->age);
-	return 0;
-}
-.P2
-.PP
-.ft I
-Output:
-.ft R
-.PP
-Name: Bob
-.PP
-Age: 42
-.PP
-Height: 5.80
-.PP
-Pointer example: Bob, age 42
-.br
-\l'\n(.lu'
-.br
-.LP
-You can also simplify the code just a little by adding typedef to the struct and restructure a few
-things. To simplify you used typedef and 'keyword' name and "C" creates an alias to make the code cleaner and easier to read. 
-It's commonly used with "struct" but can be used everywhere. 
-.LP
-.P1
-#include "common.h"
-typedef struct Person Person;
-struct Person {
-	char *name;
-	int age;
-	float height;
-};
-int main() {
-	Person p1 = {"Bob", 42, 5.8};
-	printf("Name: %s\en", p1.name);
-	printf("Age: %d\en", p1.age);
-	printf("Height: %.2f\en", p1.height);
-	Person *ptr = &p1;
-	printf("Pointer example: %s, age %d\en", ptr->name, ptr->age);
-	return 0;
-}
-.P2
-.LP
-This next example will utilize car strcture with embedding price. We are now going to pass structure
-by pointer to a function because its just easier and cleaner.
-.PP
-.ft I
-car.c
-.ft R
-.P1
-#include "common.h"
-typedef struct Price Price;
-struct Price {
-	double base;
-	double total;
-};
-typedef struct Car Car;
-struct Car {
-	char *make;
-	char *model;
-	int year;
-	Price price;
-};
-void
-print_car(Car *p)
-{
-	printf("Car: %d %s %s\en", p->year, p->make, p->model);
-	printf("Base Price: $%.2f\en", p->price.base);
-	printf("Total Cost: $%.2f\en", p->price.total);
-}
-int
-main()
-{
-	Car c1 = {"Toyota", "Corolla", 2024, 
-		{22000.00, 23800.50}
-	};
-	print_car(&c1);
-	return 0;
-}
-.P2
-.PP
-.ft I
-Output:
-.ft R
-.PP
-Car: 2024 Toyota Corolla
-.PP
-Base Price: $22000.00
-.PP
-Total Cost: $23800.50
-.br
-\l'\n(.lu'
-.br
-.PP
-.LP
-Unions can be useful but I rarely use them. But useful for building compilers and network packets. 
-They share the same memory. Lets look at this example.
-.PP
-.ft I
-my_union.c
-.ft R
-.P1
-#include "common.h"
-union Packet {
-	int num;
-	float myPi;
-	char c;
-};
-int
-main()
-{
-	union Packet data;
-	data.num = 42;
-	printf("data.num: %d\en", data.num);
-	data.myPi = 3.14;
-	printf("data.myPi: %.2f\en", data.myPi);
-	data.c = 'A';
-	printf("data.c: %c\en", data.c);
-	printf("check previous data.num: %d\en", data.num);
-	return 0;
-}
-.P2
-.PP
-.PP
-.ft I
-Output:
-.ft R
-.PP
-data.num: 42
-.PP
-data.myPi: 3.14
-.PP
-data.c: A
-.PP
-check previous data.num: 1078523201
-.br
-\l'\n(.lu'
-.br
-.PP
-As you can see above the members affect each other becasue they occupy the same memory. Integer and
-float consume 4 bytes while character consumes 1 byte. You could easily increaste the size of
-the "char" as follows: "char str[20];" and now you have a union with 20 bytes being the size of
-the largest member. 
+The stack dies when the function returns. The heap does not. You
+ask for bytes with
+.CW malloc ,
+you give them back with
+.CW free .
+Forget
+.CW free
+and the program leaks. Free twice and it can crash. Pair them.
+.TS
+box, center, tab(|);
+cb | cb
+r | l.
+Function|Purpose
+_
+malloc(size)|bytes, uninitialized
+calloc(n,size)|n elements, zeroed
+realloc(ptr,size)|grow or shrink a block
+free(ptr)|give the bytes back
+.TE
 .NH 2
-OOP
+People on the heap
 .LP
-Well its fake OOP. The pointer to a struct is the same as a pointer to the first element of the struct. Let's experiment
-with the following. 
+Same
+.CW Person
+as chapter 7. One of him, from
+.CW malloc .
+.PP
+.ft I
+people/ch8.c
+.ft R
 .P1
 #include "common.h"
+
 struct Person {
 	char *name;
 	int age;
+	float height;
 };
-struct Student {
-	struct Person base;
-	char *major;
-	double gpa;
-};
-void 
+
+void
 print_person(struct Person *p)
 {
-	print("Name: %s, Age: %d\n", p->name, p->age);
+	printf("name: %s\en", p->name);
+	printf("age: %d\en", p->age);
+	printf("height: %.1f\en", p->height);
 }
-void 
-print_student(struct Student *s)
-{
-	print("Student: %s | Major: %s | GPA: %.2f\n", s->base.name, s->major, s->gpa);
-}
+
 int
 main(void)
 {
-	struct Student s = {{"Bob Jones", 21}, "Mathematics", 3.7};
-	print_student(&s);
-	print_person((struct Person *)&s);
-	print_person(&s.base);
+	struct Person *p;
+
+	p = malloc(sizeof(struct Person));
+	if (p == NULL) {
+		printf("malloc failed\en");
+		return 1;
+	}
+	p->name = "Bob";
+	p->age = 42;
+	p->height = 5.8f;
+	print_person(p);
+	free(p);
 	return 0;
 }
 .P2
@@ -203,16 +70,137 @@ main(void)
 .ft I
 Output:
 .ft R
-.PP
-Student: Bob Jones | Major: Mathematics | GPA: 3.70
-.PP
-Name: Bob Jones, Age: 21
-.PP
-Name: Bob Jones, Age: 21
-.br
-\l'\n(.lu'
-.br
+.P1
+name: Bob
+age: 42
+height: 5.8
+.P2
 .LP
-The "Person" struct is the "base" class, and "Student" struct is the Derived class. You must have "Person base"
-named in the derived class. "print_person" is the base class method and "print_student" is the derived class method.
-Let's go deeper and "self" pointer features similart to C++.
+I check
+.CW malloc
+the same way I check a pointer for
+.CW NULL .
+The name is still a string literal. We copied a name into a buffer
+in chapter 6. We will do that again when we write a file. For now
+the heap owns the struct, not the letters.
+.NH 2
+Arguments into the heap
+.LP
+Each argument gets its own block. I free it before the next one.
+.PP
+.ft I
+arg_malloc.c
+.ft R
+.P1
+#include "common.h"
+
+void
+usage(void)
+{
+	printf("Usage: arg_malloc 1 2 3\en");
+}
+
+int
+main(int argc, char *argv[])
+{
+	int i, len;
+	char *buffer;
+
+	printf("args: %d, argv: %s\en", argc, argv[0]);
+	if (argc <= 1) {
+		usage();
+		return 1;
+	}
+	for (i = 1; i < argc; i++) {
+		len = strlen(argv[i]) + 1;
+		buffer = malloc(len);
+		if (buffer == NULL) {
+			printf("Error: Memory allocation failed!\en");
+			return 1;
+		}
+		strcpy(buffer, argv[i]);
+		printf("id [%d] address %p: item: %s, length: %d\en",
+			i, (void *)buffer, buffer, len);
+		free(buffer);
+	}
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+$ ./arg_malloc 1 2 three
+args: 4, argv: ./arg_malloc
+id [1] address 0x1009357a0: item: 1, length: 2
+id [2] address 0x1009357a0: item: 2, length: 2
+id [3] address 0x1009357a0: item: three, length: 6
+.P2
+.LP
+The addresses matched on this run because I freed before the next
+.CW malloc
+and the allocator handed the same bytes back. Do not count on that.
+.CW calloc
+is
+.CW malloc
+that also writes zeros:
+.P1
+int *arr = calloc(n, sizeof(int));
+.P2
+.NH 2
+realloc
+.LP
+.CW realloc
+keeps the old values and gives you a bigger (or smaller) block.
+If it fails, the old pointer is still yours. That is why I use a
+temp.
+.PP
+.ft I
+realloc.c
+.ft R
+.P1
+#include "common.h"
+
+int
+main(void)
+{
+	int *ptr;
+	int *temp;
+	int i;
+
+	ptr = malloc(2 * sizeof(int));
+	if (ptr == NULL) {
+		printf("allocation failed\en");
+		return 1;
+	}
+	ptr[0] = 10;
+	ptr[1] = 20;
+	temp = realloc(ptr, 4 * sizeof(int));
+	if (temp == NULL) {
+		printf("realloc failed\en");
+		free(ptr);
+		return 1;
+	}
+	ptr = temp;
+	ptr[2] = 30;
+	ptr[3] = 40;
+	printf("items: ");
+	for (i = 0; i < 4; i++)
+		printf("%d ", ptr[i]);
+	printf("\en");
+	free(ptr);
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+items: 10 20 30 40
+.P2
+.LP
+Chapter 10 uses this on a list of people. Next we write one
+.CW Person
+to a file and read it back.

@@ -3,29 +3,23 @@ Chapter 1
 .NH 2
 Why C?
 .LP
-Over the years I have gone back and forth with this. I almost always settled with python. Over the years
-I have had plenty of interruptions with other languages. I'm a big fan of the right language for the right
-task. But in some situations its just not possible. Working in Plan9 is one such discovery where you have
-limited options. Nothing has changed from the late 1980's. In fact "C" gave birth to a bunch of other languages
-that have higher than normal usage today. 
+Over the years I have gone back and forth with this. I almost always
+settled on Python. I like the right language for the right task. Then
+I spent real time in Plan 9, where the options shrink, and C is what
+you have. Nothing about that has changed since the late 1980s. C also
+gave birth to a pile of languages people actually use.
 .LP
-The K&R second edition has remained the last final goto if you get stuck in "C". They crammed a ton of 
-stuff in 177 pages. The core of "C" is in 150 pages. But we have dozens of books that exceed 300+ pages
-on "C" language concepts.
+K&R second edition is still the book I open when I am stuck. They
+crammed the core into about 150 pages. Dozens of later books spend
+300 pages on the same core. I want the short version: types, control,
+functions, pointers, structs, memory, files. The least library we can
+get away with.
 .LP
-So where is "C" used today. Mostly systems programming and micro controllers, FPGA's, ASICS, and bunch of 
-language creations, intepreters, browsers, and operating systems. The big catch is that the language
-is kind of easy to learn. Its the root of most modern languages today. 
-.LP
-Learning "C" forces you to do what few other langues do today. Its also why we have soo many problems 
-today. Very few developers deal with bits and bytes, memory management, garbage collection, and generally just how data moves or turns into tiny machine instruction code. You also have no guard rails which enable you to
-make a ton of mistakes unless you adhere to a strict discipline of precision and control. 
-.LP
-I have a collection of C books. Probably all of them or at least all of the popular books. But I want to do
-a few things different. Let's just focus on the core of "C" with the least usage of the libary today. But
-we can't help but use the following 3 main libraries <stdio.h>, <stdlib.h> and <string.h>. These are imported
-using a preprocessor directive called #include. Lets just create that now and be done with you. 
-Create a file called common.h and that will be included in every file we create. 
+We still need three headers. Every book dribbles them in one at a time.
+I do not care. Compilers will tell you when something is missing.
+Put them in
+.CW common.h
+and we are done for a while:
 .PP
 .ft I
 common.h
@@ -36,84 +30,134 @@ common.h
 #include <string.h>
 .P2
 .LP
-Every book chooses to introduce each library that comes up and I just simply don't care. Most people use IDE's and compilers are now sofisticated
-enough to tell you that you are missing a library. Plus I code mostly in plan9  operating system of "9front" and we just don't use them. If
-you choose to code in plan9 C you would use the following:
-.P1
-#include <u.h>
-#includce <libc.h>
-.P2
-The developers in plan9 kind of squeezed everything int a few libraries and called it a day. This is not the case in Posix systems. You will come
-across plenty of code with endless libs that are nearly impossible to follow. 
+If you are following along on Plan 9, swap this file for
+.CW plan9/common.h
+(
+.CW <u.h>
+and
+.CW <libc.h>
+) and read chapter 12 when you get there. The listings below stay POSIX
+so the reader is looking at one dialect.
 .NH 2
-First Program
+First program
 .LP
-Almost every program starts with the same phrase "Hello World!" so let's do that now and get it out of the way. 
+Almost every book starts with "Hello World," so let's get it out of the
+way.
 .PP
 .ft I
-hello.c
+1_hello.c
 .ft R
 .P1
 #include "common.h"
 
 int
-main()
+main(void)
 {
 	printf("hello\en");
 	return 0;
 }
 .P2
 .LP
-This is a simple function that returns an integer defined as "int". No arguments are passed
-into the function in plan9 "print()" is the same as "printf()" in posix like systems. 
-Please bear that in mind that I might forget the syntax from time to time becase I primarily
-develop on a non-traditional operating system. The other thing to take into consideration
-is that I use a very ancient style. To write my functions. Modernin examples show
-"int main" on the same line and I also move my braces "{}" to a different line. I'm likely
-going to continue to use this style through the book. Finally since we are including our own header file we enclose "common.h"
-in quotes instead of system libs which are enclosed in "<>" brackets. 
-.NH 2
-C Versions
+.CW main
+is a function that returns an
+.CW int .
+No arguments yet. We include our own header in quotes. System headers
+use
+.CW <> .
 .LP
-To compile this you will be using primarily "gcc" but "clang" works perfectly fine as well as "tcc". Again
-I compile everything in "9front" os first then try to compile on MacOS. I beleve you need "xcode-select --install" 
-to get gcc working. Please note MacOS uses "gcc" as a wrapper for "clang". I will show you multiple examples on 
-how to compile your program. You really should script it and or create a Makfile. 
+I write functions in an older layout:
+.CW int
+on its own line, opening brace on the next line. A lot of modern
+examples glue
+.CW int main
+onto one line. I am going to keep my layout through the book.
+.NH 2
+Compile it
+.LP
+On macOS or Linux, gcc or clang is fine. macOS
+.CW gcc
+is usually a wrapper for clang.
 .P1
-gcc -o foo bar.c # basic example 
-gcc -Wall -Wextra -o foo bar.c # verbose example for error checking
-8c -FVw foo.c; 8l -o foo foo.8 # plan9 example
+gcc -o hello 1_hello.c
+gcc -Wall -Wextra -o hello 1_hello.c
 .P2
 .LP
-There is a little more to the plan9 because Plan9 has multiple compilers for different archectures. 
+Use the second line. Warnings are how C talks to you. Then run
+.CW ./hello
+and you should see
+.CW hello .
 .LP
-.IP \(bu
-Sparc: kc compiler and kl linker
-.IP \(bu
-PowerPC: qc and ql linker
-.IP \(bu
-MIPS: vc and vl
-.IP \(bu
-ARM: 5c and 5l
-.IP \(bu
-AMD64: 6c and 6l
-.IP \(bu
-Intel386: 8c and 8l
+I compile on 9front first with
+.CW 8c
+and
+.CW 8l .
+That is a different compiler family, and I will not dump the whole
+architecture list into chapter 1. If you came here for Plan 9, skip
+to chapter 12 after you can compile this file with gcc.
+.NH 2
+The program we will keep
 .LP
-As well as a handfull more not listed here. But these are the most popular at the moment. There 
-are generally only a few versions os "C" since its inception in 1978. 
+Hello world teaches the shape of a file. It does not teach C. Starting
+now we also keep a tiny program called
+.CW people .
+Chapter 1 is just a name and an age, printed. No struct yet. We have
+not earned it.
+.PP
+.ft I
+people/ch1.c
+.ft R
+.P1
+#include "common.h"
+
+int
+main(void)
+{
+	printf("Bob, age %d\en", 42);
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+Bob, age 42
+.P2
 .LP
-.IP \(bu
-K&R C: Created in 1978, and named after Brian Kernighan and Dennis Ritchie.The second edition 
-is still considered the standard today.
-.IP \(bu
-C89, ANSI C, C90: The 1989 version and the primary specification used today. More than 90% of the code is written in C89.
-.IP \(bu
-C95: Rarely mentioned version because it was superceded by C99 as a big overhaul.
-.IP \(bu
-C99: The first major overhaul with tons of features I will never use with exception of "//" style comments.
-.IP \(bu
-C11: Only useful in Windows systems. 
-.IP \(bu
-Plan9 C: The Plan9 C dialect is not ANSI or ISO C. It is a variation implemented by Ken Thompson.
+.CW %d
+is a hole in the string that
+.CW printf
+fills with an integer.
+.CW 42
+is an
+.CW int .
+Next chapter we give Bob real variables instead of a magic number in
+the
+.CW printf
+line.
+.NH 2
+C versions, in one breath
 .LP
+You will hear a lot of version names. For this book:
+.IP \(bu
+K&R C is the ancestor. The second edition is still worth owning.
+.IP \(bu
+C89 / ANSI C is the dialect most of this book lives in. Declare
+variables at the top of a block.
+.IP \(bu
+C99 added
+.CW //
+comments and
+.CW for (int i = 0) .
+I use the comments. I still declare
+.CW i
+at the top so Plan 9's compiler will take the same file after a
+header swap.
+.IP \(bu
+C11 and later exist. We do not need them here.
+.IP \(bu
+Plan 9 C is Ken Thompson's compiler, not ANSI. Libraries and a few
+names differ. The language ideas do not.
+.LP
+If a later chapter needs a newer feature, I will say so. Until then,
+small C is the point.

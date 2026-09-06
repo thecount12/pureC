@@ -1,4 +1,5 @@
 #!/bin/rc
-# troff
-#troff -ms macro.ms 2.ms | page -w
-tbl macro.ms 8.ms | troff -ms | page -w
+# Preview the preface and a chapter:
+#	tbl macro.ms 0.ms 1.ms | troff -ms | page -w
+# Whole draft so far:
+tbl macro.ms 0.ms 1.ms 2.ms 3.ms 4.ms 5.ms 6.ms 7.ms 8.ms | troff -ms | page -w

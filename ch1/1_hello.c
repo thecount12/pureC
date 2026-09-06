@@ -1,8 +1,8 @@
 #include "common.h"
 
 int
-main()
+main(void)
 {
-	printf("hello\en");
+	printf("hello\n");
 	return 0;
 }

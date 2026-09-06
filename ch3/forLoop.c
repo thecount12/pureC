@@ -1,8 +1,10 @@
 #include "common.h"
 int
-main()
+main(void)
 {
-	for (int i=1; i<5;i++) {
+	int i;
+
+	for (i = 1; i < 5; i++) {
 		printf("i is: %d\n", i);
 	}
 	return 0;

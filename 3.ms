@@ -1,10 +1,13 @@
 .NH
-Flow Control
+Chapter 3. Flow Control
 .NH 2
 if, else, switch
 .LP
-Deciding the right path is handled by data conditions such as "if", "else", and 
-"switch" statements. 
+Deciding which path to take is
+.CW if ,
+.CW else ,
+and
+.CW switch .
 .PP
 .ft I
 temp.c
@@ -12,9 +15,10 @@ temp.c
 .P1
 #include "common.h"
 int
-main()
+main(void)
 {
 	int temp = 82;
+
 	if (temp > 90) {
 		printf("It's hot!\en");
 	} else if (temp >= 80) {
@@ -29,15 +33,20 @@ main()
 .ft I
 Output:
 .ft R
-.PP
-It\'s warm.
-.br
-\l'\n(.lu'
-.br
+.P1
+It's warm.
+.P2
 .LP
-I don't really use booleans logic because it didn't orignally have it. It comes with 
-C99 standard and uses "stdboo.h" but I didn't add that to common.h and I won't. We
-might create a typedef for it later. But here is a single if statementwith no else
+I do not use a boolean type. C did not have one at the start. C99
+added
+.CW <stdbool.h> .
+I did not put it in
+.CW common.h
+and I will not. Zero is false. Anything else is true. That is enough.
+A lone
+.CW if
+with no
+.CW else :
 .PP
 .ft I
 soloIf.c
@@ -45,9 +54,10 @@ soloIf.c
 .P1
 #include "common.h"
 int
-main()
+main(void)
 {
-	if(1) printf("let's go!\en");
+	if (1)
+		printf("let's go!\en");
 	return 0;
 }
 .P2
@@ -55,17 +65,17 @@ main()
 .ft I
 Output:
 .ft R
-.PP
+.P1
 let's go!
-.br
-\l'\n(.lu'
-.br
+.P2
 .NH 2
-The 'while' statement
-.PP
-The "while" condition is convenient many cases. The "do-while" I have arely used because
-I spend a great deal of time validating before running a condition. But never the
-less it could be useful if you always need something to execute at least once.
+The while statement
+.LP
+.CW while
+is what I reach for when I do not know how many times I will loop.
+Streaming data, reading a file, waiting on input.
+.CW do-while
+runs the body once before it tests. I rarely want that, but it exists.
 .PP
 .ft I
 whileDo.c
@@ -73,16 +83,17 @@ whileDo.c
 .P1
 #include "common.h"
 int
-main()
+main(void)
 {
 	int i = 40;
-	while(i < 42) {
+
+	while (i < 42) {
 		printf("While: i is %d\en", i);
 		i++;
 	}
 	do {
 		printf("do-while: i is %d\en", i);
-	} while(i <40);
+	} while (i < 40);
 	return 0;
 }
 .P2
@@ -90,22 +101,19 @@ main()
 .ft I
 Output:
 .ft R
-.PP
+.P1
 While: i is 40
-.PP
 While: i is 41
-.PP
 do-while: i is 42
-.br
-\l'\n(.lu'
-.br
-.LP
-I primarily use while statements if I'm dealing with unknown values or source. Excellent
-for streaming data.
+.P2
 .NH 2
-The 'for' Loop
+The for loop
 .LP
-The "for" loop repeats a block of code during a fixed number of times. 
+.CW for
+is a
+.CW while
+with the counter written in one place. Use it when you know the
+bounds.
 .PP
 .ft I
 forLoop.c
@@ -113,9 +121,11 @@ forLoop.c
 .P1
 #include "common.h"
 int
-main()
+main(void)
 {
-	for (int i=1; i<5;i++) {
+	int i;
+
+	for (i = 1; i < 5; i++) {
 		printf("i is: %d\en", i);
 	}
 	return 0;
@@ -125,49 +135,61 @@ main()
 .ft I
 Output:
 .ft R
-.PP
+.P1
 i is: 1
-.PP
 i is: 2
-.PP
 i is: 3
-.PP
 i is: 4
-.br
-\l'\n(.lu'
-.br
-.PP
-You do have additional features that you can use in loops and conditional statements such
-as "break" and "continue". This will allow you to skip or stop partway through a loop.
-We will see an example of break in the "switch" statement. 
+.P2
+.LP
+I declare
+.CW i
+before the loop. C99 lets you write
+.CW for (int i = 1; i < 5; i++) .
+I avoid that so the same file still compiles on Plan 9 after I swap
+the header.
+.CW break
+leaves a loop.
+.CW continue
+skips the rest of this iteration. We will see
+.CW break
+in
+.CW switch
+next.
 .NH 2
-The 'Swith' Statement
+The switch statement
+.LP
+I rarely used
+.CW switch
+in other languages. In C it is cleaner than a tall
+.CW if-else
+chain, and it will punish you if you forget
+.CW break .
 .PP
-I rarely used "switch" statement in any other language. Its mostly been "C" or maybe
-"go". I think I have it in lux. It is more elegant than nested if-else statements.
 .ft I
 switch.c
-.ft R 
+.ft R
 .P1
 #include "common.h"
 int
-main()
+main(void)
 {
 	int num = 3;
-	switch(num) {
-		case 1:
-			printf("one\en");
-			break;
-		case 2:
-			printf("two\en");
-			break;
-		case 3:
-			printf("three\en");
-		case '4':
-			printf("missing break: four\en");
-			break;
-		default:
-			print("default\en");
+
+	switch (num) {
+	case 1:
+		printf("one\en");
+		break;
+	case 2:
+		printf("two\en");
+		break;
+	case 3:
+		printf("three\en");
+	case 4:
+		printf("missing break: four\en");
+		break;
+	default:
+		printf("default\en");
 	}
 	return 0;
 }
@@ -176,13 +198,64 @@ main()
 .ft I
 Output:
 .ft R
-.PP
+.P1
 three
-.PP
 missing break: four
-.br
-\l'\n(.lu'
-.br
+.P2
+.LP
+Case 3 has no
+.CW break ,
+so it falls into case 4. That is not a mystery. It is the language.
+I used to write
+.CW case '4'
+(a character) while
+.CW num
+was an integer 3. That compiles and it is still the wrong case label.
+Match the types.
+.NH 2
+People so far
+.LP
+Three names, three ages. Print the adults.
 .PP
-This is an example of catching (3) an falling through to (4) because of a missing "break"
-statement.
+.ft I
+people/ch3.c
+.ft R
+.P1
+#include "common.h"
+
+int
+main(void)
+{
+	char *names[3];
+	int ages[3];
+	int i;
+
+	names[0] = "Bob";
+	names[1] = "Ann";
+	names[2] = "Kid";
+	ages[0] = 42;
+	ages[1] = 35;
+	ages[2] = 12;
+
+	for (i = 0; i < 3; i++) {
+		if (ages[i] >= 21)
+			printf("%s, age %d\en", names[i], ages[i]);
+	}
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+Bob, age 42
+Ann, age 35
+.P2
+.LP
+Two arrays in lockstep is a smell. They should be one type. That is
+a struct, and we have not earned it yet. Next chapter we wrap the
+printing in a function and look at
+.CW argc
+and
+.CW argv .

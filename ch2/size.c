@@ -1,12 +1,13 @@
 #include "common.h"
 int
-main()
+main(void)
 {
 	int a = 9999;
+
 	printf("%ld\n", (long)sizeof(a));
-	printf("%ld\n", sizeof(7*4));
-	printf("%ld\n", sizeof(3.14));
-	printf("%ld\n", sizeof(int));
-	printf("%ld\n", sizeof(char));
+	printf("%ld\n", (long)sizeof(7 * 4));
+	printf("%ld\n", (long)sizeof(3.14));
+	printf("%ld\n", (long)sizeof(int));
+	printf("%ld\n", (long)sizeof(char));
 	return 0;
 }

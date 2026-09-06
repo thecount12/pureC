@@ -1,33 +1,46 @@
 #include "common.h"
-void 
+
+void
 test1(int *a, int len)
 {
-	for (int i = 0; i < len; i++) {
-		print("%d\n", a[i] *2);
-	}
+	int i;
+
+	for (i = 0; i < len; i++)
+		printf("%d\n", a[i] * 2);
 }
+
 void
 test2(int a[], int len)
 {
-	for (int i = 0; i < len; i++) {
-		print("%d\n", a[i] * 2);
-	}
+	int i;
+
+	for (i = 0; i < len; i++)
+		printf("%d\n", a[i] * 2);
 }
+
 void
 test3(int a[5], int len)
 {
-	for (int i = 0; i < len; i++) {
-		print("%d\n", a[i] * 2);
-	}
+	int i;
+
+	for (i = 0; i < len; i++)
+		printf("%d\n", a[i] * 2);
 }
+
 int
-main()
+main(void)
 {
-	int x[5] = {1, 2, 3, 4, 5};
+	int x[5];
+
+	x[0] = 1;
+	x[1] = 2;
+	x[2] = 3;
+	x[3] = 4;
+	x[4] = 5;
 	test1(x, 4);
-	print("---\n");
+	printf("---\n");
 	test2(x, 4);
-	print("---\n");
+	printf("---\n");
 	test3(x, 4);
 	return 0;
 }

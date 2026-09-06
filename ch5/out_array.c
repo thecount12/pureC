@@ -1,10 +1,16 @@
 #include "common.h"
+
 int
-main()
+main(void)
 {
-	int a[3] = {42,43,44};
-	for (int i = 0; i<10; i++) {
-		print("%d\n", a[i]);
-	}
+	int a[3];
+	int i;
+
+	a[0] = 42;
+	a[1] = 43;
+	a[2] = 44;
+	for (i = 0; i < 3; i++)
+		printf("%d\n", a[i]);
+	printf("length is 3. I will not print past it.\n");
 	return 0;
 }

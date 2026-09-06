@@ -8,15 +8,16 @@ enum WeekDays {
 	friday
 };
 int
-main()
+main(void)
 {
-	int mon;
-	int tue = 1;
+	int mon = monday;
+	int tue = tuesday;
+
 	printf("PI: %.2f\n", myPI);
 	printf("enum starts: %d\n", monday);
-	mon +=1;
-    printf("monday: %d\n", mon);
+	mon += 1;
+	printf("monday+1: %d\n", mon);
 	tue++;
-	printf("tuesday: %d\n", tue);
+	printf("tuesday+1: %d\n", tue);
 	return 0;
 }

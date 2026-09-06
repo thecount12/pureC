@@ -1,29 +1,33 @@
 #include "common.h"
+
 void
 usage(void)
 {
-	print("Usage: foo 1 2 3\n");
+	printf("Usage: arg_malloc 1 2 3\n");
 }
+
 int
 main(int argc, char *argv[])
 {
-	int len;
+	int i, len;
 	char *buffer;
-	print("args: %d, argv: %s\n", argc, argv[0]);
-	if ( argc <= 1) {
+
+	printf("args: %d, argv: %s\n", argc, argv[0]);
+	if (argc <= 1) {
 		usage();
-		exits(0);
+		return 1;
 	}
-	for (int i = 1; i<argc; i++) {
+	for (i = 1; i < argc; i++) {
 		len = strlen(argv[i]) + 1;
-		buffer = malloc(len); // dynamic allocation
-		if (buffer == nil) {
-			print("Error: Memory allocation failed!\n");
-			exits("malloc");
+		buffer = malloc(len);
+		if (buffer == NULL) {
+			printf("Error: Memory allocation failed!\n");
+			return 1;
 		}
 		strcpy(buffer, argv[i]);
-		print("id [%d] address %p: item: %s, length: %d\n", i, buffer, buffer, len);
-		free(buffer); // don't forget to free it
+		printf("id [%d] address %p: item: %s, length: %d\n",
+			i, (void *)buffer, buffer, len);
+		free(buffer);
 	}
 	return 0;
 }

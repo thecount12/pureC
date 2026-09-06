@@ -1,0 +1,36 @@
+---
+description: POSIX-first C dialect for the printed book
+alwaysApply: true
+---
+
+# Printed code is POSIX
+
+Listings in chapters 1–11 use `printf`, `NULL`, `exit`, and `FILE *`.
+`print`, `nil`, `exits`, and `Biobuf` belong in `plan9/` or chapter 12.
+
+`common.h` is only:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+```
+
+Canonical copies: `posix/common.h` (printed) and `plan9/common.h` (author swap).
+Keep every `ch*/common.h` and `people/common.h` identical to POSIX.
+
+```c
+/* bad: mixed dialect */
+if (p == nil)
+	print("fail\n");
+
+/* good */
+if (p == NULL)
+	printf("fail\n");
+```
+
+Language: C89-ish so 8c still works after a header swap. Declare variables
+at the start of a block. No `for (int i = 0)`. `int` on its own line, brace
+on the next. Compile with `gcc -Wall -Wextra`. Warnings are the teacher.
+If a `.ms` listing disagrees with the `.c` file, trust the `.c` file, then
+fix the book.
