@@ -69,6 +69,41 @@ id: 2, item: read_file
 .br
 \l'\n(.lu'
 .br
+.LP
+.NH 2
+Write Files
+.LP
+Let's write files.I suppose I could use fputc() or fputs() but fprintf() works well enough. 
 .PP
-asdf
+.ft I
+write_file.c
+.ft R
+.P1
+#include "common.h" // Swapped for POSIX headers
+void 
+usage(void)
+{
+	printf("write_file: file_name\n");
+}
+int
+main(int argc, char *argv[])
+{
+	FILE *fp;
+	if (argc <= 1) {
+		usage();
+		exit(1);
+	}
+	fp = fopen(argv[1], "w");
+	if (fp == NULL) {
+		printf("error opening file for writing\n");
+		return 1;
+	}
+	fprintf(fp, "Hello from the POSIX world!\n");
+	fprintf(fp, "Writing files line by line using fprintf.\n");
+	fclose(fp);
+	return 0;
+}
+.P2
+.PP
+Summary or binary files
 
