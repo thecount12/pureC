@@ -39,7 +39,7 @@ Result: 7
 .P2
 .LP
 The line
-.CW int add(int a, int b);
+int add(int a, int b);
 is the prototype. It is a promise. The real
 .CW add
 can sit below
@@ -245,7 +245,7 @@ to show
 and
 .CW argv .
 If the count is wrong, we print usage and
-.CW return 1 .
+return 1 .
 The old draft kept running and then read
 .CW argv[3]
 anyway. That is how you crash a first program.

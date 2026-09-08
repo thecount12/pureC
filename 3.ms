@@ -145,7 +145,7 @@ i is: 4
 I declare
 .CW i
 before the loop. C99 lets you write
-.CW for (int i = 1; i < 5; i++) .
+for (int i = 1; i < 5; i++) .
 I avoid that so the same file still compiles on Plan 9 after I swap
 the header.
 .CW break

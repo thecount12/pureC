@@ -147,8 +147,7 @@ variables at the top of a block.
 .IP \(bu
 C99 added
 .CW //
-comments and
-.CW for (int i = 0) .
+comments and for (int i = 0) .
 I use the comments. I still declare
 .CW i
 at the top so Plan 9's compiler will take the same file after a

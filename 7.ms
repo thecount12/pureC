@@ -126,7 +126,7 @@ is an alias. I use it when the extra
 word starts to itch. You can write
 .CW typedef struct Person Person
 and then
-.CW Person p1 .
+Person p1 .
 I still like seeing
 .CW struct
 in the spine. It reminds me I made the type.
