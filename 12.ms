@@ -113,4 +113,5 @@ C skill is not the mapping. It is the habits: initialize, check
 and
 .CW fopen ,
 pass a length with every array, free what you allocate. The names
-in this chapter are wallpaper.
+in this chapter are wallpaper. The afterword is next: what stuck,
+and what to do with it.

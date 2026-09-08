@@ -168,6 +168,9 @@ Tagged unions and fake OOP
 .IP 12.
 The same programs on Plan 9
 .LP
+The afterword is unnumbered, like this intro. What you have now,
+and where to go.
+.LP
 The twelve chapters exist in this draft. I bent the old 1 through 8
 toward this outline instead of throwing them away. If a listing and a
 .CW .c

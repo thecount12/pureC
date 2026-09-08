@@ -10,7 +10,7 @@ still feels like a spell. The listings themselves stay C.
 
     Preview a chapter on Plan 9:
         tbl macro.ms intro.ms 1.ms | troff -ms | page -w
-        tbl macro.ms 5.ms 6.ms | troff -ms | page -w
+        tbl macro.ms 12.ms outro.ms | troff -ms | page -w
 
     Build the people snapshots on macOS or Linux:
         make

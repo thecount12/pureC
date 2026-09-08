@@ -2,4 +2,4 @@
 # Preview the preface and a chapter:
 #	tbl macro.ms intro.ms 1.ms | troff -ms | page -w
 # Whole draft so far:
-tbl macro.ms intro.ms 1.ms 2.ms 3.ms 4.ms 5.ms 6.ms 7.ms 8.ms 9.ms 10.ms 11.ms 12.ms | troff -ms | page -w
+tbl macro.ms intro.ms 1.ms 2.ms 3.ms 4.ms 5.ms 6.ms 7.ms 8.ms 9.ms 10.ms 11.ms 12.ms outro.ms | troff -ms | page -w
