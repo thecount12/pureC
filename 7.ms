@@ -1,5 +1,5 @@
 .NH
-Chapter 7. Structs
+Structs
 .LP
 A struct is a type you invent that holds mixed data. We have been
 carrying a name in one array and an age in another. That is a smell.
@@ -179,6 +179,8 @@ Car: 2024 Toyota Corolla
 Base Price: $22000.00
 Total Cost: $23800.50
 .P2
+.LP
+Now you: skip anyone under 21 again. One loop, one type.
 .LP
 Unions and fake OOP wait until chapter 11. The program we are
 keeping is still

@@ -1,5 +1,5 @@
 .NH
-Chapter 6. Arrays and strings
+Arrays and strings
 .LP
 An array is a row of the same type. You pick a slot with
 .CW [0] ,
@@ -441,5 +441,9 @@ is enough for
 .CW "Bob"
 and the
 .CW '\\0' .
-It is not enough for a long name. Next chapter those two arrays
-become one type.
+It is not enough for a long name. Now you: copy Ann instead. Or
+pass
+.CW n
+as 2 and leave Kid out.
+.LP
+Next chapter those two arrays become one type.

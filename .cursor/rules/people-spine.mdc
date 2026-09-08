@@ -14,8 +14,9 @@ Closed loop for every change: write the `.c` file, compile, run, paste that
 output into the `.ms` file, then write the prose.
 
 The twelve-chapter draft is in place. `people/chN.c` matches the
-outline in `0.ms`. Do not add a new toy when the next snapshot can
-teach it. If you touch a listing, compile, run, and paste that output.
+outline in `intro.ms`. Chapter 10 is the payoff: load, grow, save.
+Do not add a new toy when the next snapshot can teach it. If you
+touch a listing, compile, run, and paste that output.
 
 Habits to keep teaching: initialize, check `malloc`/`fopen`, pass length
 with arrays, one dialect per file.

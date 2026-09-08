@@ -1,5 +1,5 @@
 .NH
-Chapter 9. Files
+Files
 .LP
 A file is a stream. You open it, you check the pointer, you use it,
 you close it. Skip the check or the close and the rest of the
@@ -183,6 +183,14 @@ id: 2, item: ./read_file
 "hello world"
 "foo bar"
 .P2
+.LP
+The check is not decoration. I ran it on a name that does not
+exist:
+.P1
+$ ./read_file no-such.txt
+id: 2, item: ./read_file
+error opening file
+.P2
 .NH 2
 Writing
 .LP
@@ -233,4 +241,8 @@ use the file,
 .CW fclose .
 Binary files and
 .CW fseek
-can wait. Next chapter the list itself can grow.
+can wait. Now you: add a third person to the file. Or run
+.CW load
+when
+.CW people.txt
+is missing. Chapter 10 hangs that habit on a list that can grow.

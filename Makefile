@@ -8,7 +8,7 @@ PEOPLE_BIN = people/ch1 people/ch2 people/ch3 people/ch4 \
 	people/ch5 people/ch6 people/ch7 people/ch8 \
 	people/ch9 people/ch10
 
-.PHONY: all people clean hello
+.PHONY: all people clean hello test
 
 all: hello people
 
@@ -23,5 +23,11 @@ people: $(PEOPLE_BIN)
 people/%: people/%.c people/common.h
 	$(CC) $(CFLAGS) -o $@ $<
 
+ch4/test_older: ch4/test_older.c ch4/common.h
+	$(CC) $(CFLAGS) -o $@ ch4/test_older.c
+
+test: ch4/test_older
+	./ch4/test_older
+
 clean:
-	rm -f ch1/1_hello $(PEOPLE_BIN) people.txt
+	rm -f ch1/1_hello $(PEOPLE_BIN) people.txt ch4/test_older

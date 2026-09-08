@@ -1,5 +1,5 @@
 .NH
-Chapter 2. Variables and Statements
+Variables and statements
 .LP
 In C, everything begins with a type. The type tells the compiler how
 much memory to reserve, how the bits are stored, and which operations
@@ -329,5 +329,8 @@ height: 5.8
 .P2
 .LP
 .CW name
-is a character array. Next chapter we get a few people and a loop,
-and we skip anyone under 21.
+is a character array. Now you: give Ann a name, an age, and a
+height. Print her too.
+.LP
+Next chapter we get a few people and a loop, and we skip anyone
+under 21.

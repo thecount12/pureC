@@ -1,5 +1,5 @@
 .NH
-Chapter 8. Memory
+Memory
 .LP
 The stack dies when the function returns. The heap does not. You
 ask for bytes with
@@ -82,7 +82,11 @@ the same way I check a pointer for
 .CW NULL .
 The name is still a string literal. We copied a name into a buffer
 in chapter 6. We will do that again when we write a file. For now
-the heap owns the struct, not the letters.
+the heap owns the struct, not the letters. Now you:
+.CW malloc
+a second
+.CW Person .
+Print both. Free both.
 .NH 2
 Arguments into the heap
 .LP

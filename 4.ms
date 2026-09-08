@@ -1,5 +1,5 @@
 .NH
-Chapter 4. Functions
+Functions
 .LP
 Functions take arguments and return values. They make the code
 testable, but C wants a prototype (or the full definition) before you
@@ -298,6 +298,85 @@ $ ./ch4 Ann
 Ann, age 42
 older of 42 and 35: 42
 .P2
+.LP
+No arguments is a path, not a crash. Now you: pass two names.
+Print both. Or make
+.CW older
+take three ages.
+.NH 2
+A small test
+.LP
+.CW older
+is small enough to check without staring at
+.CW printf .
+I copied it into a second file and asked three questions. If any
+answer is wrong, the program says so and returns 1. If they are
+all right, it prints
+.CW ok
+and returns 0. That is a unit test. No framework. A function, a
+few
+.CW if
+s, an exit status.
+.PP
+.ft I
+test_older.c
+.ft R
+.P1
+#include "common.h"
+
+int
+older(int a, int b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
+
+int
+fail(char *msg)
+{
+	printf("fail: %s\en", msg);
+	return 1;
+}
+
+int
+main(void)
+{
+	if (older(42, 35) != 42)
+		return fail("42 and 35");
+	if (older(12, 35) != 35)
+		return fail("12 and 35");
+	if (older(7, 7) != 7)
+		return fail("equal");
+	printf("ok\en");
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+ok
+.P2
+.LP
+I ran
+.CW gcc -Wall -Wextra -o test_older ch4/test_older.c
+and then
+.CW ./test_older .
+The equal case is the one I used to forget.
+.CW make test
+builds this and runs it. Later you can do the same to
+.CW add_person
+or
+.CW load .
+I will not add a test runner. One file is enough to see the habit.
+I wrote
+.CW fail
+so you can see the return; the library name is
+.CW assert
+in
+.CW <assert.h> .
 .LP
 Next we need addresses.
 .CW print_person

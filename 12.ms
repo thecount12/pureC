@@ -1,5 +1,5 @@
 .NH
-Chapter 12. The same programs on Plan 9
+The same programs on Plan 9
 .LP
 I write these programs on 9front. You have been reading POSIX.
 The language did not change. A few names did. I swap

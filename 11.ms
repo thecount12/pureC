@@ -1,5 +1,5 @@
 .NH
-Chapter 11. Unions and fake OOP
+Unions and fake OOP
 .LP
 The spine does not need this chapter. A
 .CW Person
@@ -54,6 +54,167 @@ rarely want a union. Compilers and packets do. If you grow the
 to
 .CW char str[20] ,
 the union is 20 bytes. Size of the largest member.
+.NH 2
+A tag, then a tiny tree
+.LP
+The smash is why you keep a tag. An
+.CW enum
+says which member is live. That pair is a tagged union. Compilers
+store a program that way: a tree of nodes, each node a kind plus
+a payload. I am not writing a compiler. I parse
+.CW 12+35 ,
+build three nodes, add them, free them. Depth one. No recursion.
+.PP
+.ft I
+ast.c
+.ft R
+.P1
+#include "common.h"
+
+enum Kind {
+	NUM,
+	ADD
+};
+
+struct Node {
+	enum Kind kind;
+	union {
+		int num;
+		struct {
+			struct Node *left;
+			struct Node *right;
+		} add;
+	} u;
+};
+
+struct Node *
+num_node(int n)
+{
+	struct Node *p;
+
+	p = malloc(sizeof(*p));
+	if (p == NULL)
+		return NULL;
+	p->kind = NUM;
+	p->u.num = n;
+	return p;
+}
+
+struct Node *
+add_node(struct Node *left, struct Node *right)
+{
+	struct Node *p;
+
+	p = malloc(sizeof(*p));
+	if (p == NULL)
+		return NULL;
+	p->kind = ADD;
+	p->u.add.left = left;
+	p->u.add.right = right;
+	return p;
+}
+
+int
+number(char **s)
+{
+	int n;
+
+	n = 0;
+	while (**s >= '0' && **s <= '9') {
+		n = n * 10 + (**s - '0');
+		(*s)++;
+	}
+	return n;
+}
+
+struct Node *
+parse(char *s)
+{
+	struct Node *left;
+	struct Node *right;
+	struct Node *t;
+
+	left = num_node(number(&s));
+	if (left == NULL)
+		return NULL;
+	if (*s != '+') {
+		free(left);
+		return NULL;
+	}
+	s++;
+	right = num_node(number(&s));
+	if (right == NULL) {
+		free(left);
+		return NULL;
+	}
+	t = add_node(left, right);
+	if (t == NULL) {
+		free(left);
+		free(right);
+		return NULL;
+	}
+	return t;
+}
+
+int
+eval(struct Node *n)
+{
+	if (n->kind == NUM)
+		return n->u.num;
+	return n->u.add.left->u.num + n->u.add.right->u.num;
+}
+
+void
+free_tree(struct Node *n)
+{
+	if (n->kind == ADD) {
+		free(n->u.add.left);
+		free(n->u.add.right);
+	}
+	free(n);
+}
+
+int
+main(void)
+{
+	struct Node *t;
+	char *text;
+
+	text = "12+35";
+	t = parse(text);
+	if (t == NULL) {
+		printf("parse failed\en");
+		return 1;
+	}
+	printf("%s = %d\en", text, eval(t));
+	free_tree(t);
+	return 0;
+}
+.P2
+.PP
+.ft I
+Output:
+.ft R
+.P1
+12+35 = 47
+.P2
+.LP
+.CW number
+walks digits and advances the pointer.
+.CW parse
+wants one plus and two numbers. That is the whole language.
+.CW eval
+looks at
+.CW kind
+before it touches
+.CW u .
+Skip the tag and you are back to
+.CW 1078523201 .
+A real parser returns a deeper tree and
+.CW eval
+walks it. I will not write one.
+.CW people
+is still a list of records, not a language.
 .NH 2
 A struct at the front
 .LP

@@ -1,7 +1,5 @@
 .NH
-Chapter 1
-.NH 2
-Why C?
+Why C
 .LP
 Over the years I have gone back and forth with this. I almost always
 settled on Python. I like the right language for the right task. Then
@@ -11,9 +9,14 @@ gave birth to a pile of languages people actually use.
 .LP
 K&R second edition is still the book I open when I am stuck. They
 crammed the core into about 150 pages. Dozens of later books spend
-300 pages on the same core. I want the short version: types, control,
-functions, pointers, structs, memory, files. The least library we can
-get away with.
+300 pages on the same core. Duc-Tam Nguyen's
+.I The Little Book of C
+is a recent short one I liked: a tiny listing, then you try it.
+Abelson and Sussman's wizard book is the other pole. Scheme, not C,
+but it is why a short working text still feels like sorcery to me.
+I wanted that size, and one program that grows instead of a new
+toy every page. Types, control, functions, pointers, structs,
+memory, files. The least library we can get away with.
 .LP
 We still need three headers. Every book dribbles them in one at a time.
 I do not care. Compilers will tell you when something is missing.
@@ -131,6 +134,8 @@ fills with an integer.
 .CW 42
 is an
 .CW int .
+Now you: change the age. Change the name. Compile it again.
+.LP
 Next chapter we give Bob real variables instead of a magic number in
 the
 .CW printf

@@ -1,5 +1,5 @@
 .NH
-Chapter 5. Pointers
+Pointers
 .LP
 A pointer is a variable that stores the address of another variable.
 That is the whole idea. Arrays and strings can wait one chapter.
@@ -157,5 +157,10 @@ and
 are the same address.
 .CW have_birthday
 does not return a new int. It writes through the pointer. Bob is
-still not a type. Next chapter we put a few of him in arrays and
-pass the length.
+still not a type. Now you: call
+.CW have_birthday
+twice. Or pass height as a
+.CW float *
+and change that too.
+.LP
+Next chapter we put a few of him in arrays and pass the length.

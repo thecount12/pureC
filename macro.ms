@@ -1,3 +1,9 @@
+.nr PS 10	\" point size
+.nr VS 12	\" vertical spacing
+.nr PL 11i	\" page length
+.nr PO 1i	\" page offset
+.nr LL 6.5i	\" line length
+
 .\" Rename the original ms macros to keep their internal formatting
 .rn P1 oldP1
 .rn P2 oldP2

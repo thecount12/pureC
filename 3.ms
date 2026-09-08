@@ -1,5 +1,5 @@
 .NH
-Chapter 3. Flow Control
+Flow control
 .NH 2
 if, else, switch
 .LP
@@ -254,8 +254,10 @@ Ann, age 35
 .P2
 .LP
 Two arrays in lockstep is a smell. They should be one type. That is
-a struct, and we have not earned it yet. Next chapter we wrap the
-printing in a function and look at
+a struct, and we have not earned it yet. Now you: print only Kid.
+Or raise the cutoff to 40.
+.LP
+Next chapter we wrap the printing in a function and look at
 .CW argc
 and
 .CW argv .

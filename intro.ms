@@ -1,9 +1,42 @@
-.NH
+.\" Front matter. Unnumbered. Preview:
+.\"   tbl macro.ms intro.ms 1.ms | troff -ms | page -w
+.TL
+pureC
+.AU
+William C. Gunnells
+gunnells@gmail.com
+thinktankworkspaces.com
+.AB
+A small grimoire. This document will get you up to speed in C using
+mostly single-file programs. The printed listings are POSIX. I write
+them on Plan 9 and swap a header. One small program,
+.CW people ,
+grows with you.
+.AE
+.SH
 How to read this book
 .LP
 I wrote this book to learn C. I work in Plan 9, but I want you to learn
 the language, not my operating system. So here is the one rule.
-.NH 2
+.SH
+A grimoire, not a textbook
+.LP
+Lisp got there first in my head. Abelson and Sussman's
+.I Structure and Interpretation of Computer Programs
+(second edition), and the MIT lectures that go with it, made a program
+feel like a spell: a small text that, when you run it, does a thing
+in the machine. People call that the wizard book. Sorcerer Linux,
+which later became Source Mage, used the same word for a package you
+compile. I still like that. A grimoire is a book you work from.
+.LP
+This one is C. The listings are the spells. You copy them, you compile,
+they run or the compiler tells you why. We keep one working,
+.CW people ,
+instead of a new demon every page. The same craft lives on Plan 9 at
+.CW technomancy.site .
+Here the printed dialect stays POSIX so you can learn the language.
+The names in the listings are not magic. They are C.
+.SH
 The printed code is POSIX
 .LP
 Every listing in the core chapters compiles with gcc or clang.
@@ -42,7 +75,7 @@ of the header swap is that the
 does not change. Types, pointers, structs, and
 .CW malloc
 are the book. Opening a file is just a library call.
-.NH 2
+.SH
 One program that grows
 .LP
 Most C books show a new toy every page. I did that in the first draft
@@ -59,7 +92,26 @@ The snapshots live in the
 .CW people/
 directory and should compile with
 .CW gcc .
-.NH 2
+Here is the spine. The extra examples are side roads. Stay on this
+if you get lost.
+.TS
+box, center, tab(|);
+cb | cb | cb
+l | l | l.
+Chapter|File|What people gained
+_
+1|people/ch1.c|a name and an age, printed
+2|people/ch2.c|real variables
+3|people/ch3.c|a loop, skip the kid
+4|people/ch4.c|functions and argv
+5|people/ch5.c|a pointer, a birthday
+6|people/ch6.c|pass the length, copy a name
+7|people/ch7.c|one struct
+8|people/ch8.c|one Person on the heap
+9|people/ch9.c|save and load
+10|people/ch10.c|grow, then keep it
+.TE
+.SH
 How I compile
 .LP
 On macOS or Linux:
@@ -75,6 +127,10 @@ are the teacher. I used to treat warnings as noise. They are not.
 A Makefile sits at the root of the repo for the
 .CW people
 snapshots.
+.CW make test
+runs the small
+.CW older
+check from chapter 4.
 .LP
 I write functions in an older layout:
 .CW int
@@ -85,36 +141,30 @@ header swap. You can put
 on the same line as
 .CW main
 if that is what you are used to. I will not.
-.NH 2
-The shape of the book
+.SH
+Table of Contents
 .IP 1.
-A program is a function that returns int
+Why C
 .IP 2.
-Types and values
+Variables and statements
 .IP 3.
-Control flow
+Flow control
 .IP 4.
-Functions, scope,
-.CW argc
-and
-.CW argv
+Functions
 .IP 5.
-Pointers (just addresses)
+Pointers
 .IP 6.
 Arrays and strings
 .IP 7.
 Structs
 .IP 8.
-Memory:
-.CW malloc ,
-.CW realloc ,
-.CW free
+Memory
 .IP 9.
 Files
 .IP 10.
 A list of people that can grow
 .IP 11.
-Tagged unions and function pointers (the fake OOP)
+Tagged unions and fake OOP
 .IP 12.
 The same programs on Plan 9
 .LP
