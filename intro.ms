@@ -7,50 +7,27 @@ William C. Gunnells
 gunnells@gmail.com
 thinktankworkspaces.com
 .AB
-A small grimoire. This document will get you up to speed in C using
-mostly single-file programs. The printed listings are POSIX. I write
-them on Plan 9 and swap a header. One small program,
-.CW people ,
-grows with you.
+A small grimoire for those inclined to learn the dark arts of C programming. This document will get you up to speed in C using mostly single-file programs. The printed listings are POSIX. I write them on an obscure operating system called 9front, whose predecessor was Plan9 from AT&T Bell-Labs and swap out a header file to be compatible with macOS, BSD, and Linux. One small program called “mages” grows with you.
 .AE
 .SH
 How to read this book
 .LP
-I wrote this book to learn C. I work in Plan 9, but I want you to learn
-the language, not my operating system. So here is the one rule.
+.sp 1v
+I wrote this book to relearn C. I work with the 9front operating system most of the time, but I want you to learn the language, not my operating system. So here is the one rule. 
 .SH
 A grimoire, not a textbook
 .LP
-Lisp got there first in my head. Abelson and Sussman's
-.I Structure and Interpretation of Computer Programs
-(second edition), and the MIT lectures that go with it, made a program
-feel like a spell: a small text that, when you run it, does a thing
-in the machine. People call that the wizard book. Sorcerer Linux,
-which later became Source Mage, used the same word for a package you
-compile. I still like that. A grimoire is a book you work from.
+.sp 1v
+Lisp got there first in my head. Abelson and Sussman's Structure and Interpretation of Computer Programs (second edition), and the MIT Lectures that go with it made a program feel like a spell: a small text that, when you run it, does a thing in the machine. People call that the wizard's book. Many years later, an operating system called Sorcerer GNU/Linux was created with a magic-themed package management system. Building the system directly from source allows for high optimization on the user's hardware. I still remember it fondly. This grimoire on C is a book you work from to create super-powerful programs.
 .LP
-This one is C. The listings are the spells. You copy them, you compile,
-they run or the compiler tells you why. We keep one working,
-.CW people ,
-instead of a new demon every page. The same craft lives on Plan 9 at
-.CW technomancy.site .
-Here the printed dialect stays POSIX so you can learn the language.
-The names in the listings are not magic. They are C.
+The listings are the spells. You copy them, compile them, and they either run or the compiler tells you why your summoning failed. We keep one program working called mages; each chapter performs a new ritual that builds on the previous one. The same craft lives on in 9front and other operating systems. Here the printed dialect stays POSIX so you can learn the language. The names in the listings are magical. They are pure C. 
 .SH
 The printed code is POSIX
 .LP
-Every listing in the core chapters compiles with gcc or clang.
-I use
-.CW printf ,
-.CW NULL ,
-and
-.CW exit .
-If I slip and write
-.CW print
-or
-.CW nil
-in those chapters, that is a mistake.
+.sp 1v
+Every listing in the core chapters compiles with gcc or clang. I use “printf”,  “NULL”, and “exit”. If I slip and write “print” or “nil” in those chapters, that is a mistake on my part.
 .LP
+.sp 1v
 The only library file we need for a long time is
 .CW common.h :
 .PP
