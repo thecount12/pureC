@@ -1,7 +1,7 @@
 #include "common.h"
 
 void
-print_people(char *names[], int ages[], int n)
+print_mages(char *names[], int ages[], int n)
 {
 	int i;
 
@@ -24,7 +24,7 @@ main(void)
 	ages[1] = 35;
 	ages[2] = 12;
 	n = 3;
-	print_people(names, ages, n);
+	print_mages(names, ages, n);
 	strcpy(copy, names[0]);
 	printf("copied: %s\n", copy);
 	return 0;

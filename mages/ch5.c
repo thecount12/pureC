@@ -1,7 +1,7 @@
 #include "common.h"
 
 void
-print_person(char *name, int *age)
+print_mage(char *name, int *age)
 {
 	printf("%s, age %d\n", name, *age);
 }
@@ -22,8 +22,8 @@ main(void)
 	name = "Bob";
 	age = 42;
 	p = &age;
-	print_person(name, p);
+	print_mage(name, p);
 	have_birthday(p);
-	print_person(name, &age);
+	print_mage(name, &age);
 	return 0;
 }

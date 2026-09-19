@@ -4,23 +4,23 @@ Structs
 A struct is a type you invent that holds mixed data. We have been
 carrying a name in one array and an age in another. That is a smell.
 This is where
-.CW people
+.CW mages
 becomes one type.
 .PP
 .ft I
-people/ch7.c
+mages/ch7.c
 .ft R
 .P1
 #include "common.h"
 
-struct Person {
+struct Mage {
 	char *name;
 	int age;
 	float height;
 };
 
 void
-print_person(struct Person *p)
+print_mage(struct Mage *p)
 {
 	printf("name: %s\en", p->name);
 	printf("age: %d\en", p->age);
@@ -30,22 +30,22 @@ print_person(struct Person *p)
 int
 main(void)
 {
-	struct Person people[3];
+	struct Mage mages[3];
 	int i;
 	int n;
 
-	people[0].name = "Bob";
-	people[0].age = 42;
-	people[0].height = 5.8f;
-	people[1].name = "Ann";
-	people[1].age = 35;
-	people[1].height = 5.5f;
-	people[2].name = "Kid";
-	people[2].age = 12;
-	people[2].height = 4.2f;
+	mages[0].name = "Bob";
+	mages[0].age = 42;
+	mages[0].height = 5.8f;
+	mages[1].name = "Ann";
+	mages[1].age = 35;
+	mages[1].height = 5.5f;
+	mages[2].name = "Kid";
+	mages[2].age = 12;
+	mages[2].height = 4.2f;
 	n = 3;
 	for (i = 0; i < n; i++)
-		print_person(&people[i]);
+		print_mage(&mages[i]);
 	return 0;
 }
 .P2
@@ -73,7 +73,7 @@ is still on the stack and still has a fixed length. We have not
 earned
 .CW malloc
 yet. Next chapter we put one
-.CW Person
+.CW Mage
 on the heap.
 .NH 2
 Dot and arrow
@@ -184,5 +184,5 @@ Now you: skip anyone under 21 again. One loop, one type.
 .LP
 Unions and fake OOP wait until chapter 11. The program we are
 keeping is still
-.CW people :
+.CW mages :
 one struct, an array of them, a pointer into each slot.

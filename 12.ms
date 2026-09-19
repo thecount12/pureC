@@ -104,7 +104,7 @@ write
 so
 .CW 8c
 will take the same
-.CW people
+.CW mages
 snapshot after I swap the header. That is why the book looks old.
 It is the price of one program on two systems.
 .LP

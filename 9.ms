@@ -25,33 +25,33 @@ files in
 .CW ch7/
 wait there. Here we stay POSIX.
 .NH 2
-People on disk
+Mages on disk
 .LP
 The name is now a buffer. A string literal cannot survive a
 .CW fscanf .
-We write two people, close the file, open it again, and print what
+We write two mages, close the file, open it again, and print what
 came back.
 .PP
 .ft I
-people/ch9.c
+mages/ch9.c
 .ft R
 .P1
 #include "common.h"
 
-struct Person {
+struct Mage {
 	char name[32];
 	int age;
 	float height;
 };
 
 void
-print_person(struct Person *p)
+print_mage(struct Mage *p)
 {
 	printf("%s, age %d, height %.1f\en", p->name, p->age, p->height);
 }
 
 int
-save(char *path, struct Person *p, int n)
+save(char *path, struct Mage *p, int n)
 {
 	FILE *fp;
 	int i;
@@ -66,7 +66,7 @@ save(char *path, struct Person *p, int n)
 }
 
 int
-load(char *path, struct Person *p, int cap, int *n)
+load(char *path, struct Mage *p, int cap, int *n)
 {
 	FILE *fp;
 	int i;
@@ -86,29 +86,29 @@ load(char *path, struct Person *p, int cap, int *n)
 int
 main(void)
 {
-	struct Person people[3];
-	struct Person loaded[3];
+	struct Mage mages[3];
+	struct Mage loaded[3];
 	int n;
 	int i;
 
-	strcpy(people[0].name, "Bob");
-	people[0].age = 42;
-	people[0].height = 5.8f;
-	strcpy(people[1].name, "Ann");
-	people[1].age = 35;
-	people[1].height = 5.5f;
+	strcpy(mages[0].name, "Bob");
+	mages[0].age = 42;
+	mages[0].height = 5.8f;
+	strcpy(mages[1].name, "Ann");
+	mages[1].age = 35;
+	mages[1].height = 5.5f;
 	n = 2;
-	if (save("people.txt", people, n) != 0) {
+	if (save("mages.txt", mages, n) != 0) {
 		printf("save failed\en");
 		return 1;
 	}
 	n = 0;
-	if (load("people.txt", loaded, 3, &n) != 0) {
+	if (load("mages.txt", loaded, 3, &n) != 0) {
 		printf("load failed\en");
 		return 1;
 	}
 	for (i = 0; i < n; i++)
-		print_person(&loaded[i]);
+		print_mage(&loaded[i]);
 	return 0;
 }
 .P2
@@ -121,7 +121,7 @@ Bob, age 42, height 5.8
 Ann, age 35, height 5.5
 .P2
 .LP
-.CW people.txt
+.CW mages.txt
 looks like this:
 .P1
 Bob 42 5.8
@@ -241,8 +241,8 @@ use the file,
 .CW fclose .
 Binary files and
 .CW fseek
-can wait. Now you: add a third person to the file. Or run
+can wait. Now you: add a third mage to the file. Or run
 .CW load
 when
-.CW people.txt
+.CW mages.txt
 is missing. Chapter 10 hangs that habit on a list that can grow.

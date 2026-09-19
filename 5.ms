@@ -100,22 +100,22 @@ need it for
 and
 .CW fopen .
 .NH 2
-People so far
+Mages so far
 .LP
-.CW print_person
+.CW print_mage
 already took a
 .CW char *
 for the name. That star was a pointer and I did not make a fuss.
 Now the age is a pointer too, so a function can change it.
 .PP
 .ft I
-people/ch5.c
+mages/ch5.c
 .ft R
 .P1
 #include "common.h"
 
 void
-print_person(char *name, int *age)
+print_mage(char *name, int *age)
 {
 	printf("%s, age %d\en", name, *age);
 }
@@ -136,9 +136,9 @@ main(void)
 	name = "Bob";
 	age = 42;
 	p = &age;
-	print_person(name, p);
+	print_mage(name, p);
 	have_birthday(p);
-	print_person(name, &age);
+	print_mage(name, &age);
 	return 0;
 }
 .P2

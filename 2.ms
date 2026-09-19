@@ -293,14 +293,14 @@ and print
 so I am not fighting format warnings yet. These sizes are for my
 machine. Yours might differ. That is the lesson.
 .NH 2
-People so far
+Mages so far
 .LP
 Bob is no longer a magic number inside
 .CW printf .
 He has a name, an age, and a height, each with a type.
 .PP
 .ft I
-people/ch2.c
+mages/ch2.c
 .ft R
 .P1
 #include "common.h"
@@ -332,5 +332,5 @@ height: 5.8
 is a character array. Now you: give Ann a name, an age, and a
 height. Print her too.
 .LP
-Next chapter we get a few people and a loop, and we skip anyone
+Next chapter we get a few mages and a loop, and we skip anyone
 under 21.

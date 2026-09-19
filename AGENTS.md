@@ -6,12 +6,12 @@ and swaps headers. Follow `.cursor/rules/` and `intro.ms`.
 ## Prompt to paste into a new Cursor chat or Plan
 
 Continue the pureC book. Printed listings are POSIX (`printf`, `NULL`, `exit`).
-Plan 9 is `plan9/common.h` and chapter 12. The spine is `people/chN.c`, one
+Plan 9 is `plan9/common.h` and chapter 12. The spine is `mages/chN.c`, one
 snapshot per chapter. Keep my first-person voice in the `.ms` files. Compile
 with `gcc -Wall -Wextra` and paste real output into the book. The
 twelve-chapter draft is in place (`5.ms` pointers through `12.ms` Plan 9).
-`people/ch10.c` is the payoff: load, grow, save. Next: keep listings
-matched to the `.c` files. Do not add a new toy when `people/chN.c`
+`mages/ch10.c` is the payoff: load, grow, save. Next: keep listings
+matched to the `.c` files. Do not add a new toy when `mages/chN.c`
 can teach it.
 
 ## How to work here

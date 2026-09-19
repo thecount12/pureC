@@ -17,7 +17,7 @@ Listings in chapters 1–11 use `printf`, `NULL`, `exit`, and `FILE *`.
 ```
 
 Canonical copies: `posix/common.h` (printed) and `plan9/common.h` (author swap).
-Keep every `ch*/common.h` and `people/common.h` identical to POSIX.
+Keep every `ch*/common.h` and `mages/common.h` identical to POSIX.
 
 ```c
 /* bad: mixed dialect */

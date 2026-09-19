@@ -384,19 +384,19 @@ is a writable array.
 .CW "Hello"
 as a pointer is a literal. Leave it alone.
 .NH 2
-People so far
+Mages so far
 .LP
 Chapter 3 already had two arrays in lockstep. Now we pass the length
 and we copy a name into a small buffer.
 .PP
 .ft I
-people/ch6.c
+mages/ch6.c
 .ft R
 .P1
 #include "common.h"
 
 void
-print_people(char *names[], int ages[], int n)
+print_mages(char *names[], int ages[], int n)
 {
 	int i;
 
@@ -419,7 +419,7 @@ main(void)
 	ages[1] = 35;
 	ages[2] = 12;
 	n = 3;
-	print_people(names, ages, n);
+	print_mages(names, ages, n);
 	strcpy(copy, names[0]);
 	printf("copied: %s\en", copy);
 	return 0;

@@ -213,12 +213,12 @@ I used to write
 was an integer 3. That compiles and it is still the wrong case label.
 Match the types.
 .NH 2
-People so far
+Mages so far
 .LP
 Three names, three ages. Print the adults.
 .PP
 .ft I
-people/ch3.c
+mages/ch3.c
 .ft R
 .P1
 #include "common.h"

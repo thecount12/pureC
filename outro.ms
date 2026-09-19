@@ -4,7 +4,7 @@ What you have now
 .LP
 You started with
 .CW printf
-and a number. You ended with a list of people that can grow, sit
+and a number. You ended with a list of mages that can grow, sit
 on a disk, and come back. In between: types, control, functions,
 pointers, arrays, structs,
 .CW malloc ,
@@ -21,7 +21,7 @@ with what you allocated. Keep one dialect in a file. Warnings are
 the teacher. A function small enough to test is a function you
 understand.
 .LP
-.CW people
+.CW mages
 is still tiny. Run it twice and you get two Kids. That is fine.
 You know where the body is. Change it.
 .SH
@@ -41,7 +41,7 @@ is a program you need, compiled with
 and
 .CW -Wextra ,
 one dialect, one
-.CW people
+.CW mages
 list you kept.
 .LP
 The grimoire is this short. The work is not.

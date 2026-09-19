@@ -1,8 +1,8 @@
 .NH
 A list that can grow
 .LP
-Chapter 7 had three people and a fixed array. Chapter 8 had one
-person on the heap. Chapter 9 wrote two of them to a file. Put
+Chapter 7 had three mages and a fixed array. Chapter 8 had one
+mage on the heap. Chapter 9 wrote two of them to a file. Put
 those together:
 .CW malloc
 a small list,
@@ -11,36 +11,36 @@ what you have,
 .CW realloc
 when it fills,
 .CW save
-it back. That is the record-keeper I wanted in the intro. Not a
+it back. That is the roster I wanted in the intro. Not a
 new program. The same
-.CW people ,
+.CW mages ,
 finished.
 .LP
 The path can come from
 .CW argv
 again, the way it did in chapter 4. No argument means
-.CW people.txt .
+.CW mages.txt .
 .PP
 .ft I
-people/ch10.c
+mages/ch10.c
 .ft R
 .P1
 #include "common.h"
 
-struct Person {
+struct Mage {
 	char name[32];
 	int age;
 	float height;
 };
 
 void
-print_person(struct Person *p)
+print_mage(struct Mage *p)
 {
 	printf("%s, age %d\en", p->name, p->age);
 }
 
 int
-save(char *path, struct Person *p, int n)
+save(char *path, struct Mage *p, int n)
 {
 	FILE *fp;
 	int i;
@@ -55,7 +55,7 @@ save(char *path, struct Person *p, int n)
 }
 
 int
-load(char *path, struct Person *p, int cap, int *n)
+load(char *path, struct Mage *p, int cap, int *n)
 {
 	FILE *fp;
 	int i;
@@ -73,13 +73,13 @@ load(char *path, struct Person *p, int cap, int *n)
 }
 
 int
-add_person(struct Person **list, int *n, int *cap,
+add_mage(struct Mage **list, int *n, int *cap,
 	char *name, int age, float height)
 {
-	struct Person *tmp;
+	struct Mage *tmp;
 
 	if (*n == *cap) {
-		tmp = realloc(*list, (*cap * 2) * sizeof(struct Person));
+		tmp = realloc(*list, (*cap * 2) * sizeof(struct Mage));
 		if (tmp == NULL)
 			return 1;
 		*list = tmp;
@@ -95,18 +95,18 @@ add_person(struct Person **list, int *n, int *cap,
 int
 main(int argc, char *argv[])
 {
-	struct Person *list;
+	struct Mage *list;
 	char *path;
 	int cap;
 	int n;
 	int i;
 
-	path = "people.txt";
+	path = "mages.txt";
 	if (argc > 1)
 		path = argv[1];
 	cap = 2;
 	n = 0;
-	list = malloc(cap * sizeof(struct Person));
+	list = malloc(cap * sizeof(struct Mage));
 	if (list == NULL) {
 		printf("malloc failed\en");
 		return 1;
@@ -115,13 +115,13 @@ main(int argc, char *argv[])
 		printf("no file yet: %s\en", path);
 		n = 0;
 	}
-	if (add_person(&list, &n, &cap, "Kid", 12, 4.2f) != 0) {
+	if (add_mage(&list, &n, &cap, "Kid", 12, 4.2f) != 0) {
 		printf("realloc failed\en");
 		free(list);
 		return 1;
 	}
 	for (i = 0; i < n; i++)
-		print_person(&list[i]);
+		print_mage(&list[i]);
 	printf("count %d cap %d\en", n, cap);
 	if (save(path, list, n) != 0) {
 		printf("save failed\en");
@@ -133,9 +133,9 @@ main(int argc, char *argv[])
 }
 .P2
 .LP
-.CW add_person
+.CW add_mage
 takes
-.CW struct Person **
+.CW struct Mage **
 so
 .CW realloc
 can change the pointer
@@ -160,14 +160,14 @@ count 1 cap 2
 .P2
 .LP
 After chapter 9,
-.CW people.txt
+.CW mages.txt
 already has Bob and Ann. Capacity is 2. Those two fill it. Kid
 needs more room, so we double.
 .P1
 $ ./ch9
 Bob, age 42, height 5.8
 Ann, age 35, height 5.5
-$ ./ch10 people.txt
+$ ./ch10 mages.txt
 Bob, age 42
 Ann, age 35
 Kid, age 12
@@ -182,10 +182,10 @@ Kid 12 4.2
 .P2
 .LP
 Run it twice and you get two Kids. I know. It is a first
-record-keeper, not a database.
+roster, not a database.
 .LP
 Now you: pass a path that is not
-.CW people.txt .
+.CW mages.txt .
 Or stop adding Kid and only load and print.
 .LP
 Unions and fake OOP are a side road. The program we kept is this

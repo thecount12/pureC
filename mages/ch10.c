@@ -1,19 +1,19 @@
 #include "common.h"
 
-struct Person {
+struct Mage {
 	char name[32];
 	int age;
 	float height;
 };
 
 void
-print_person(struct Person *p)
+print_mage(struct Mage *p)
 {
 	printf("%s, age %d\n", p->name, p->age);
 }
 
 int
-save(char *path, struct Person *p, int n)
+save(char *path, struct Mage *p, int n)
 {
 	FILE *fp;
 	int i;
@@ -28,7 +28,7 @@ save(char *path, struct Person *p, int n)
 }
 
 int
-load(char *path, struct Person *p, int cap, int *n)
+load(char *path, struct Mage *p, int cap, int *n)
 {
 	FILE *fp;
 	int i;
@@ -46,13 +46,13 @@ load(char *path, struct Person *p, int cap, int *n)
 }
 
 int
-add_person(struct Person **list, int *n, int *cap,
+add_mage(struct Mage **list, int *n, int *cap,
 	char *name, int age, float height)
 {
-	struct Person *tmp;
+	struct Mage *tmp;
 
 	if (*n == *cap) {
-		tmp = realloc(*list, (*cap * 2) * sizeof(struct Person));
+		tmp = realloc(*list, (*cap * 2) * sizeof(struct Mage));
 		if (tmp == NULL)
 			return 1;
 		*list = tmp;
@@ -68,18 +68,18 @@ add_person(struct Person **list, int *n, int *cap,
 int
 main(int argc, char *argv[])
 {
-	struct Person *list;
+	struct Mage *list;
 	char *path;
 	int cap;
 	int n;
 	int i;
 
-	path = "people.txt";
+	path = "mages.txt";
 	if (argc > 1)
 		path = argv[1];
 	cap = 2;
 	n = 0;
-	list = malloc(cap * sizeof(struct Person));
+	list = malloc(cap * sizeof(struct Mage));
 	if (list == NULL) {
 		printf("malloc failed\n");
 		return 1;
@@ -88,13 +88,13 @@ main(int argc, char *argv[])
 		printf("no file yet: %s\n", path);
 		n = 0;
 	}
-	if (add_person(&list, &n, &cap, "Kid", 12, 4.2f) != 0) {
+	if (add_mage(&list, &n, &cap, "Kid", 12, 4.2f) != 0) {
 		printf("realloc failed\n");
 		free(list);
 		return 1;
 	}
 	for (i = 0; i < n; i++)
-		print_person(&list[i]);
+		print_mage(&list[i]);
 	printf("count %d cap %d\n", n, cap);
 	if (save(path, list, n) != 0) {
 		printf("save failed\n");

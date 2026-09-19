@@ -21,27 +21,27 @@ realloc(ptr,size)|grow or shrink a block
 free(ptr)|give the bytes back
 .TE
 .NH 2
-People on the heap
+A mage on the heap
 .LP
 Same
-.CW Person
+.CW Mage
 as chapter 7. One of him, from
 .CW malloc .
 .PP
 .ft I
-people/ch8.c
+mages/ch8.c
 .ft R
 .P1
 #include "common.h"
 
-struct Person {
+struct Mage {
 	char *name;
 	int age;
 	float height;
 };
 
 void
-print_person(struct Person *p)
+print_mage(struct Mage *p)
 {
 	printf("name: %s\en", p->name);
 	printf("age: %d\en", p->age);
@@ -51,9 +51,9 @@ print_person(struct Person *p)
 int
 main(void)
 {
-	struct Person *p;
+	struct Mage *p;
 
-	p = malloc(sizeof(struct Person));
+	p = malloc(sizeof(struct Mage));
 	if (p == NULL) {
 		printf("malloc failed\en");
 		return 1;
@@ -61,7 +61,7 @@ main(void)
 	p->name = "Bob";
 	p->age = 42;
 	p->height = 5.8f;
-	print_person(p);
+	print_mage(p);
 	free(p);
 	return 0;
 }
@@ -85,7 +85,7 @@ in chapter 6. We will do that again when we write a file. For now
 the heap owns the struct, not the letters. Now you:
 .CW malloc
 a second
-.CW Person .
+.CW Mage .
 Print both. Free both.
 .NH 2
 Arguments into the heap
@@ -205,6 +205,6 @@ Output:
 items: 10 20 30 40
 .P2
 .LP
-Chapter 10 uses this on a list of people. Next we write one
-.CW Person
+Chapter 10 uses this on a list of mages. Next we write one
+.CW Mage
 to a file and read it back.

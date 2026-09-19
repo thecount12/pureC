@@ -250,19 +250,19 @@ The old draft kept running and then read
 .CW argv[3]
 anyway. That is how you crash a first program.
 .NH 2
-People so far
+Mages so far
 .LP
 Printing a person is now a function. Comparing ages is another.
 You can pass a name on the command line.
 .PP
 .ft I
-people/ch4.c
+mages/ch4.c
 .ft R
 .P1
 #include "common.h"
 
 void
-print_person(char *name, int age)
+print_mage(char *name, int age)
 {
 	printf("%s, age %d\en", name, age);
 }
@@ -279,9 +279,9 @@ int
 main(int argc, char *argv[])
 {
 	if (argc > 1)
-		print_person(argv[1], 42);
+		print_mage(argv[1], 42);
 	else
-		print_person("Bob", 42);
+		print_mage("Bob", 42);
 	printf("older of 42 and 35: %d\en", older(42, 35));
 	return 0;
 }
@@ -367,7 +367,7 @@ and then
 The equal case is the one I used to forget.
 .CW make test
 builds this and runs it. Later you can do the same to
-.CW add_person
+.CW add_mage
 or
 .CW load .
 I will not add a test runner. One file is enough to see the habit.
@@ -379,7 +379,7 @@ in
 .CW <assert.h> .
 .LP
 Next we need addresses.
-.CW print_person
+.CW print_mage
 already takes a
 .CW char * .
 That star is the whole next chapter.

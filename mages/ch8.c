@@ -1,13 +1,13 @@
 #include "common.h"
 
-struct Person {
+struct Mage {
 	char *name;
 	int age;
 	float height;
 };
 
 void
-print_person(struct Person *p)
+print_mage(struct Mage *p)
 {
 	printf("name: %s\n", p->name);
 	printf("age: %d\n", p->age);
@@ -17,9 +17,9 @@ print_person(struct Person *p)
 int
 main(void)
 {
-	struct Person *p;
+	struct Mage *p;
 
-	p = malloc(sizeof(struct Person));
+	p = malloc(sizeof(struct Mage));
 	if (p == NULL) {
 		printf("malloc failed\n");
 		return 1;
@@ -27,7 +27,7 @@ main(void)
 	p->name = "Bob";
 	p->age = 42;
 	p->height = 5.8f;
-	print_person(p);
+	print_mage(p);
 	free(p);
 	return 0;
 }

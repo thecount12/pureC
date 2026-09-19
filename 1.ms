@@ -102,12 +102,12 @@ The program we will keep
 .LP
 Hello world teaches the shape of a file. It does not teach C. Starting
 now we also keep a tiny program called
-.CW people .
+.CW mages .
 Chapter 1 is just a name and an age, printed. No struct yet. We have
 not earned it.
 .PP
 .ft I
-people/ch1.c
+mages/ch1.c
 .ft R
 .P1
 #include "common.h"

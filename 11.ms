@@ -2,7 +2,7 @@
 Unions and fake OOP
 .LP
 The spine does not need this chapter. A
-.CW Person
+.CW Mage
 is one layout. I am putting the leftover toys here so they do not
 sit on top of structs again.
 .NH 2
@@ -213,7 +213,7 @@ Skip the tag and you are back to
 A real parser returns a deeper tree and
 .CW eval
 walks it. I will not write one.
-.CW people
+.CW mages
 is still a list of records, not a language.
 .NH 2
 A struct at the front
@@ -362,5 +362,5 @@ front, methods as pointers, a
 .CW self
 you pass yourself. That is enough pretend C++. The program we kept
 is
-.CW people ,
+.CW mages ,
 not a class. Next chapter is the header swap I have been postponing.

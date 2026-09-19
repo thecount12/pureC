@@ -57,16 +57,16 @@ One program that grows
 .LP
 Most C books show a new toy every page. I did that in the first draft
 and I did not get better. So we also keep one small program called
-.CW people .
+.CW mages .
 Each chapter adds a little. By the time we have structs and
 .CW malloc ,
-you have a tiny record-keeper, not a pile of fragments.
+you have a tiny roster, not a pile of fragments.
 .LP
 The extra examples (temperature, calculator, cars) stay as side roads.
 The spine is
-.CW people .
+.CW mages .
 The snapshots live in the
-.CW people/
+.CW mages/
 directory and should compile with
 .CW gcc .
 Here is the spine. The extra examples are side roads. Stay on this
@@ -75,18 +75,18 @@ if you get lost.
 box, center, tab(|);
 cb | cb | cb
 l | l | l.
-Chapter|File|What people gained
+Chapter|File|What the circle gained
 _
-1|people/ch1.c|a name and an age, printed
-2|people/ch2.c|real variables
-3|people/ch3.c|a loop, skip the kid
-4|people/ch4.c|functions and argv
-5|people/ch5.c|a pointer, a birthday
-6|people/ch6.c|pass the length, copy a name
-7|people/ch7.c|one struct
-8|people/ch8.c|one Person on the heap
-9|people/ch9.c|save and load
-10|people/ch10.c|grow, then keep it
+1|mages/ch1.c|a name and an age, printed
+2|mages/ch2.c|real variables
+3|mages/ch3.c|a loop, skip the apprentice
+4|mages/ch4.c|functions and argv
+5|mages/ch5.c|a pointer, a birthday
+6|mages/ch6.c|pass the length, copy a name
+7|mages/ch7.c|one struct
+8|mages/ch8.c|one Mage on the heap
+9|mages/ch9.c|save and load
+10|mages/ch10.c|grow, then keep it
 .TE
 .SH
 How I compile
@@ -94,7 +94,7 @@ How I compile
 On macOS or Linux:
 .P1
 gcc -Wall -Wextra -o hello ch1/1_hello.c
-gcc -Wall -Wextra -o people people/ch1.c
+gcc -Wall -Wextra -o mages mages/ch1.c
 .P2
 .LP
 .CW -Wall
@@ -102,7 +102,7 @@ and
 .CW -Wextra
 are the teacher. I used to treat warnings as noise. They are not.
 A Makefile sits at the root of the repo for the
-.CW people
+.CW mages
 snapshots.
 .CW make test
 runs the small
@@ -139,7 +139,7 @@ Memory
 .IP 9.
 Files
 .IP 10.
-A list of people that can grow
+A list of mages that can grow
 .IP 11.
 Tagged unions and fake OOP
 .IP 12.

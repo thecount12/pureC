@@ -1,16 +1,16 @@
 CC = gcc
 CFLAGS = -Wall -Wextra
 
-PEOPLE_SRC = people/ch1.c people/ch2.c people/ch3.c people/ch4.c \
-	people/ch5.c people/ch6.c people/ch7.c people/ch8.c \
-	people/ch9.c people/ch10.c
-PEOPLE_BIN = people/ch1 people/ch2 people/ch3 people/ch4 \
-	people/ch5 people/ch6 people/ch7 people/ch8 \
-	people/ch9 people/ch10
+MAGES_SRC = mages/ch1.c mages/ch2.c mages/ch3.c mages/ch4.c \
+	mages/ch5.c mages/ch6.c mages/ch7.c mages/ch8.c \
+	mages/ch9.c mages/ch10.c
+MAGES_BIN = mages/ch1 mages/ch2 mages/ch3 mages/ch4 \
+	mages/ch5 mages/ch6 mages/ch7 mages/ch8 \
+	mages/ch9 mages/ch10
 
-.PHONY: all people clean hello test
+.PHONY: all mages clean hello test
 
-all: hello people
+all: hello mages
 
 hello: ch1/1_hello
 	@echo built $<
@@ -18,9 +18,9 @@ hello: ch1/1_hello
 ch1/1_hello: ch1/1_hello.c ch1/common.h
 	$(CC) $(CFLAGS) -o $@ ch1/1_hello.c
 
-people: $(PEOPLE_BIN)
+mages: $(MAGES_BIN)
 
-people/%: people/%.c people/common.h
+mages/%: mages/%.c mages/common.h
 	$(CC) $(CFLAGS) -o $@ $<
 
 ch4/test_older: ch4/test_older.c ch4/common.h
@@ -30,4 +30,4 @@ test: ch4/test_older
 	./ch4/test_older
 
 clean:
-	rm -f ch1/1_hello $(PEOPLE_BIN) people.txt ch4/test_older
+	rm -f ch1/1_hello $(MAGES_BIN) mages.txt people.txt ch4/test_older
