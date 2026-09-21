@@ -15,19 +15,18 @@ without writing assembly.
 int
 main(void)
 {
-	int age = 42;
-	float price = 3.14159;
-	char initial = 'a';
-	double weight = 155.2;
-	unsigned int score = 100;
-	long long_num = 2114748364;
-	long long big_num = 12345678901234LL;
-
-	printf("age: %d, price: %f\en", age, price);
-	printf("initial: %c, weight: %f\en", initial, weight);
-	printf("score: %u\en", score);
-	printf("long_num: %ld\en", long_num);
-	printf("big_num: %lld\en", big_num);
+	int dragons = 42;
+	float manna = 3.14159;
+	char rune = 'a';
+	double treasure = 155.2;
+	unsigned int herbs = 100;
+	long jewels = 2114748364;
+	long long hoard = 12345678901234LL;
+	printf("dragons: %d, manna: %f\n", dragons, manna);
+	printf("rune: %c, treasure: %f\n", rune, treasure);
+	printf("herbs: %u\n", herbs);
+	printf("jewels: %ld\n", jewels);
+	printf("hoard: %lld\n", hoard);
 	return 0;
 }
 .P2
@@ -36,11 +35,11 @@ main(void)
 Output:
 .ft R
 .P1
-age: 42, price: 3.141590
-initial: a, weight: 155.200000
-score: 100
-long_num: 2114748364
-big_num: 12345678901234
+dragons: 42, manna: 3.141590
+rune: a, treasure: 155.200000
+herbs: 100
+jewels: 2114748364
+hoard: 12345678901234
 .P2
 .LP
 Each variable is initialized. You can declare without an assignment:
@@ -112,26 +111,24 @@ enum.c
 .ft R
 .P1
 #include "common.h"
-#define myPI 3.14159
-enum WeekDays {
-	monday,
-	tuesday,
-	wednesday,
-	thursday,
-	friday
+#define CIRCLE 3.14159
+enum Rank {
+	apprentice,
+	adept,
+	mage,
+	archmage
 };
 int
 main(void)
 {
-	int mon = monday;
-	int tue = tuesday;
-
-	printf("PI: %.2f\en", myPI);
-	printf("enum starts: %d\en", monday);
-	mon += 1;
-	printf("monday+1: %d\en", mon);
-	tue++;
-	printf("tuesday+1: %d\en", tue);
+	int a = apprentice;
+	int b = adept;
+	printf("circle: %.2f\n", CIRCLE);
+	printf("rank starts: %d\n", apprentice);
+	a += 1;
+	printf("apprentice+1: %d\n", a);
+	b++;
+	printf("adept+1: %d\n", b);
 	return 0;
 }
 .P2
@@ -140,10 +137,10 @@ main(void)
 Output:
 .ft R
 .P1
-PI: 3.14
-enum starts: 0
-monday+1: 1
-tuesday+1: 2
+circle: 3.14
+rank starts: 0
+apprentice+1: 1
+adept+1: 2
 .P2
 .LP
 I used

@@ -3,18 +3,17 @@
 int
 main(void)
 {
-	int age = 42;
-	float price = 3.14159;
-	char initial = 'a';
-	double weight = 155.2;
-	unsigned int score = 100;
-	long long_num = 2114748364;
-	long long big_num = 12345678901234LL;
-
-	printf("age: %d, price: %f\n", age, price);
-	printf("initial: %c, weight: %f\n", initial, weight);
-	printf("score: %u\n", score);
-	printf("long_num: %ld\n", long_num);
-	printf("big_num: %lld\n", big_num);
+	int dragons = 42;
+	float manna = 3.14159;
+	char rune = 'a';
+	double treasure = 155.2;
+	unsigned int herbs = 100;
+	long jewels = 2114748364;
+	long long hoard = 12345678901234LL;
+	printf("dragons: %d, manna: %f\n", dragons, manna);
+	printf("rune: %c, treasure: %f\n", rune, treasure);
+	printf("herbs: %u\n", herbs);
+	printf("jewels: %ld\n", jewels);
+	printf("hoard: %lld\n", hoard);
 	return 0;
 }

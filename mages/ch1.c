@@ -3,6 +3,6 @@
 int
 main(void)
 {
-	printf("Bob, age %d\n", 42);
+	printf("Merlin, is over %d+ years old\n", 1500);
 	return 0;
 }

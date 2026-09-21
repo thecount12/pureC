@@ -49,26 +49,18 @@ to
 That mapping lives in chapter 12. Until then, ignore Plan 9. The point
 of the header swap is that the
 .I language
-does not change. Types, pointers, structs, and
-.CW malloc
-are the book. Opening a file is just a library call.
+does not change. Types, pointers, structs, and malloc are the foundational tools for application development used to manage memory dynamically and build complex, custom data structures. 
+(liked linked lists, trees, and graphs). Opening a file is just a library call.
 .SH
 One program that grows
 .LP
 Most C books show a new toy every page. I did that in the first draft
-and I did not get better. So we also keep one small program called
-.CW mages .
-Each chapter adds a little. By the time we have structs and
-.CW malloc ,
-you have a tiny roster, not a pile of fragments.
+and It did not get better. So now we keep one small program called
+mages. Each chapter adds a little to it. By the time we have structs and malloc, you will have a tiny roster, not a pile of fragments.
 .LP
-The extra examples (temperature, calculator, cars) stay as side roads.
-The spine is
-.CW mages .
-The snapshots live in the
-.CW mages/
-directory and should compile with
-.CW gcc .
+The extra examples (temperature, calculator, cars) stay as side roads. The spine is mages. The snapshots live in the "mages/"
+directory and should compile with "gcc" .
+.LP
 Here is the spine. The extra examples are side roads. Stay on this
 if you get lost.
 .TS
@@ -97,27 +89,10 @@ gcc -Wall -Wextra -o hello ch1/1_hello.c
 gcc -Wall -Wextra -o mages mages/ch1.c
 .P2
 .LP
-.CW -Wall
-and
-.CW -Wextra
-are the teacher. I used to treat warnings as noise. They are not.
-A Makefile sits at the root of the repo for the
-.CW mages
-snapshots.
-.CW make test
-runs the small
-.CW older
-check from chapter 4.
+The statement options "-Wall" and "-Wextra" are the teacher. I used to treat warnings as noise. They are not. A Makefile sits at the root of the repo for the mages snapshots. The "make test" command runs the small "test_older.c" check from chapter 4.
 .LP
-I write functions in an older layout:
-.CW int
-on its own line, braces on the next line. I declare loop variables at
-the start of a block so the same code still compiles on Plan 9 after a
-header swap. You can put
-.CW int
-on the same line as
-.CW main
-if that is what you are used to. I will not.
+I write functions in an older layout: "int" on its own line, braces on the next line. I declare loop variables at the start of a block so the same code still compiles on Plan 9 after a header swap. You can put
+"int" on the same line as "main" if that is what you are used to. I will not.
 .SH
 Table of Contents
 .IP 1.
@@ -145,20 +120,6 @@ Tagged unions and fake OOP
 .IP 12.
 The same programs on Plan 9
 .LP
-The afterword is unnumbered, like this intro. What you have now,
-and where to go.
+The afterword is unnumbered, like this intro and explains what you have now, and where to go for future learning.
 .LP
-The twelve chapters exist in this draft. I bent the old 1 through 8
-toward this outline instead of throwing them away. If a listing and a
-.CW .c
-file disagree, trust the
-.CW .c
-file, then fix the book. That is the whole method.
-.LP
-C skill is not syntax. It is a few habits: initialize every variable,
-check
-.CW malloc
-and
-.CW fopen ,
-pass a length with every array, and keep one dialect in a file.
-The rest of the book is those habits, repeated until they stick.
+In summary if a listing and a ".c" file disagree, trust the ".c" file, then fix the the spine and contribute to an errata. That is the whole method to spell crafting. C skill is not syntax. It is a few habits: initialize every variable, check "malloc" and "fopen", pass a length with every array, and keep one dialect in a file. The rest of the book is those habits, repeated until they stick.
