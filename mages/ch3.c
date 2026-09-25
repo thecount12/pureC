@@ -7,12 +7,12 @@ main(void)
 	int ages[3];
 	int i;
 
-	names[0] = "Bob";
-	names[1] = "Ann";
-	names[2] = "Kid";
-	ages[0] = 42;
+	names[0] = "Merlin";
+	names[1] = "Morgana";
+	names[2] = "Nimue";
+	ages[0] = 1502;
 	ages[1] = 35;
-	ages[2] = 12;
+	ages[2] = 20;
 
 	for (i = 0; i < 3; i++) {
 		if (ages[i] >= 21)

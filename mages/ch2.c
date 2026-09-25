@@ -3,8 +3,8 @@
 int
 main(void)
 {
-	char name[] = "Bob";
-	int age = 42;
+	char name[] = "Merlin";
+	int age = 1502;
 	float height = 5.8f;
 
 	printf("name: %s\n", name);

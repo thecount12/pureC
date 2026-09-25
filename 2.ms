@@ -7,7 +7,7 @@ are allowed. It is the closest we get to talking to the machine
 without writing assembly.
 .PP
 .ft I
-2_data_types.c
+2_types_spell.c
 .ft R
 .P1
 #include "common.h"
@@ -15,10 +15,10 @@ without writing assembly.
 int
 main(void)
 {
-	int dragons = 42;
-	float manna = 3.14159;
+	int dragons = 4;
+	float manna = 3.52163;
 	char rune = 'a';
-	double treasure = 155.2;
+	double treasure = 172.2;
 	unsigned int herbs = 100;
 	long jewels = 2114748364;
 	long long hoard = 12345678901234LL;
@@ -35,8 +35,8 @@ main(void)
 Output:
 .ft R
 .P1
-dragons: 42, manna: 3.141590
-rune: a, treasure: 155.200000
+dragons: 4, manna: 3.52163
+rune: a, treasure: 172.200000
 herbs: 100
 jewels: 2114748364
 hoard: 12345678901234
@@ -123,7 +123,7 @@ main(void)
 {
 	int a = apprentice;
 	int b = adept;
-	printf("circle: %.2f\n", CIRCLE);
+	printf("magick circle: %.2f\n", CIRCLE);
 	printf("rank starts: %d\n", apprentice);
 	a += 1;
 	printf("apprentice+1: %d\n", a);
@@ -137,19 +137,19 @@ main(void)
 Output:
 .ft R
 .P1
-circle: 3.14
+magick circle: 3.14
 rank starts: 0
 apprentice+1: 1
 adept+1: 2
 .P2
 .LP
-I used
+Originally I used
 .CW myPI
 instead of
 .CW PI .
 Some environments already define
 .CW PI
-and you get a redefinition error.
+and you get a redefinition error. But in this case we build magic circles.
 .CW enum
 starts at zero unless you set the first value.
 .CW #define
@@ -248,7 +248,7 @@ gives the size in bytes of a type or a value. It can change with the
 machine. I use it constantly.
 .PP
 .ft I
-size.c
+size_spell.c
 .ft R
 .P1
 #include "common.h"
@@ -292,7 +292,7 @@ machine. Yours might differ. That is the lesson.
 .NH 2
 Mages so far
 .LP
-Bob is no longer a magic number inside
+Merlin is no longer a magic number inside
 .CW printf .
 He has a name, an age, and a height, each with a type.
 .PP
@@ -305,8 +305,8 @@ mages/ch2.c
 int
 main(void)
 {
-	char name[] = "Bob";
-	int age = 42;
+	char name[] = "Merlin";
+	int age = 1502;
 	float height = 5.8f;
 
 	printf("name: %s\en", name);
@@ -320,13 +320,13 @@ main(void)
 Output:
 .ft R
 .P1
-name: Bob
-age: 42
+name: Merlin
+age: 1502
 height: 5.8
 .P2
 .LP
 .CW name
-is a character array. Now you: give Ann a name, an age, and a
+is a character array. Now you: give Morgana a name, an age, and a
 height. Print her too.
 .LP
 Next chapter we get a few mages and a loop, and we skip anyone

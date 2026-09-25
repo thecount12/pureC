@@ -10,7 +10,7 @@ and
 .CW switch .
 .PP
 .ft I
-temp.c
+temp_spell.c
 .ft R
 .P1
 #include "common.h"
@@ -49,7 +49,7 @@ with no
 .CW else :
 .PP
 .ft I
-soloIf.c
+solo_spell_if.c
 .ft R
 .P1
 #include "common.h"
@@ -78,7 +78,7 @@ Streaming data, reading a file, waiting on input.
 runs the body once before it tests. I rarely want that, but it exists.
 .PP
 .ft I
-whileDo.c
+whileDoSpell.c
 .ft R
 .P1
 #include "common.h"
@@ -116,7 +116,7 @@ with the counter written in one place. Use it when you know the
 bounds.
 .PP
 .ft I
-forLoop.c
+forLoopSpell.c
 .ft R
 .P1
 #include "common.h"
@@ -230,12 +230,12 @@ main(void)
 	int ages[3];
 	int i;
 
-	names[0] = "Bob";
-	names[1] = "Ann";
-	names[2] = "Kid";
-	ages[0] = 42;
+	names[0] = "Merlin";
+	names[1] = "Morgana";
+	names[2] = "Nimue";
+	ages[0] = 1502;
 	ages[1] = 35;
-	ages[2] = 12;
+	ages[2] = 20;
 
 	for (i = 0; i < 3; i++) {
 		if (ages[i] >= 21)
@@ -249,13 +249,13 @@ main(void)
 Output:
 .ft R
 .P1
-Bob, age 42
-Ann, age 35
+Merlin, age 1502
+Morgana, age 35
 .P2
 .LP
 Two arrays in lockstep is a smell. They should be one type. That is
-a struct, and we have not earned it yet. Now you: print only Kid.
-Or raise the cutoff to 40.
+a struct, and we have not earned it yet. Now you: print only Merlin and Morgana.
+Or raise the cutoff to 36.
 .LP
 Next chapter we wrap the printing in a function and look at
 .CW argc

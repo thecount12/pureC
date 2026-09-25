@@ -3,10 +3,10 @@
 int
 main(void)
 {
-	int dragons = 42;
-	float manna = 3.14159;
+	int dragons = 4;
+	float manna = 3.52163;
 	char rune = 'a';
-	double treasure = 155.2;
+	double treasure = 172.2;
 	unsigned int herbs = 100;
 	long jewels = 2114748364;
 	long long hoard = 12345678901234LL;

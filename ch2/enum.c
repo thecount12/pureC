@@ -12,7 +12,7 @@ main(void)
 {
 	int a = apprentice;
 	int b = adept;
-	printf("circle: %.2f\n", CIRCLE);
+	printf("magick circle: %.2f\n", CIRCLE);
 	printf("rank starts: %d\n", apprentice);
 	a += 1;
 	printf("apprentice+1: %d\n", a);

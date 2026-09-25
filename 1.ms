@@ -40,7 +40,7 @@ Almost every book starts with "Hello World," so let's get it out of the
 way.
 .PP
 .ft I
-1_hello.c
+1_spell.c
 .ft R
 .P1
 #include "common.h"
@@ -73,8 +73,8 @@ On macOS or Linux, gcc or clang is fine. macOS
 .CW gcc
 is usually a wrapper for clang.
 .P1
-gcc -o hello 1_hello.c
-gcc -Wall -Wextra -o hello 1_hello.c
+gcc -o hello 1_spell.c
+gcc -Wall -Wextra -o hello 1_spell.c
 .P2
 .LP
 Use the second line. Warnings are how C talks to you. Then run
